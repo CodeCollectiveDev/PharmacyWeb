@@ -2,8 +2,7 @@ import { ArrowRight, Shield, Heart, Users, Clock, Phone, Pill, Stethoscope, User
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import heroImage from '@/assets/hero-pharmacy.jpg';
-import consultationImage from '@/assets/consultation.jpg';
+// Removed image imports to fix 500 errors
 
 const Index = () => {
   const services = [
@@ -45,11 +44,6 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-hero text-primary-foreground overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src={heroImage} 
-            alt="CarePoint Pharmacy Interior" 
-            className="w-full h-full object-cover opacity-20"
-          />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary-glow/80"></div>
         </div>
         
@@ -161,12 +155,12 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
-              <img 
-                src={consultationImage} 
-                alt="Pharmacist Consultation" 
-                className="rounded-lg shadow-card w-full h-auto"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-trust/20 to-transparent rounded-lg"></div>
+              <div className="w-full h-64 bg-gradient-to-br from-primary/20 to-trust/20 rounded-lg shadow-card flex items-center justify-center">
+                <div className="text-center text-muted-foreground">
+                  <Users className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                  <p className="text-sm">Pharmacist Consultation</p>
+                </div>
+              </div>
             </div>
             
             <div className="space-y-6">

@@ -1,7 +1,7 @@
 import { Pill, Heart, Shield, Stethoscope, Thermometer, UserCheck, Clock, Phone } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import consultationImage from '@/assets/consultation.jpg';
+// Removed image import to fix 500 error
 
 const Services = () => {
   const mainServices = [
@@ -138,12 +138,12 @@ const Services = () => {
               </Button>
             </div>
             <div className="relative">
-              <img 
-                src={consultationImage} 
-                alt="Pharmacist consultation" 
-                className="rounded-lg shadow-card w-full h-auto"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-trust/20 to-transparent rounded-lg"></div>
+              <div className="w-full h-64 bg-gradient-to-br from-primary/20 to-trust/20 rounded-lg shadow-card flex items-center justify-center">
+                <div className="text-center text-muted-foreground">
+                  <UserCheck className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                  <p className="text-sm">Pharmacist Consultation</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

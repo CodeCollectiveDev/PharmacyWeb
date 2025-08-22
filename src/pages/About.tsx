@@ -1,6 +1,6 @@
 import { Heart, Award, Users, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import pharmacyTeam from '@/assets/pharmacy-team.jpg';
+// Removed image import to fix 500 error
 
 const About = () => {
   const values = [
@@ -88,12 +88,12 @@ const About = () => {
               </div>
             </div>
             <div className="relative">
-              <img 
-                src={pharmacyTeam} 
-                alt="CarePoint Pharmacy Team" 
-                className="rounded-lg shadow-card w-full h-auto"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-trust/20 to-transparent rounded-lg"></div>
+              <div className="w-full h-64 bg-gradient-to-br from-primary/20 to-trust/20 rounded-lg shadow-card flex items-center justify-center">
+                <div className="text-center text-muted-foreground">
+                  <Users className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                  <p className="text-sm">CarePoint Pharmacy Team</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
