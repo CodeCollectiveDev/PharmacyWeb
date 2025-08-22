@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Pharmacy Brand Colors */
+    --background: 0 0% 100%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Primary: Calming Teal - Main brand color */
+    --primary: 174 58% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 174 58% 45%;
+
+    /* Secondary: Soft Blue - Supporting color */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 215 25% 15%;
+
+    /* Muted: Light grays for backgrounds */
+    --muted: 210 15% 97%;
+    --muted-foreground: 215 15% 45%;
+
+    /* Accent: Warm orange for CTAs */
+    --accent: 25 95% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Healthcare Trust: Deep navy for headers */
+    --trust: 215 45% 25%;
+    --trust-foreground: 0 0% 100%;
+
+    /* Wellness: Soft green for health content */
+    --wellness: 140 40% 85%;
+    --wellness-foreground: 140 60% 25%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 95%;
+    --ring: 174 58% 35%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Gradients for hero and sections */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-wellness: linear-gradient(180deg, hsl(var(--wellness)), hsl(var(--background)));
+    --gradient-trust: linear-gradient(135deg, hsl(var(--trust)), hsl(var(--primary)));
+
+    /* Shadows for depth */
+    --shadow-soft: 0 4px 20px hsl(var(--primary) / 0.08);
+    --shadow-card: 0 8px 30px hsl(var(--primary) / 0.12);
+    --shadow-cta: 0 4px 15px hsl(var(--accent) / 0.3);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    --background: 215 30% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 215 25% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 215 25% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 174 58% 45%;
+    --primary-foreground: 215 30% 8%;
+    --primary-glow: 174 58% 55%;
+
+    --secondary: 215 20% 18%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 215 20% 18%;
+    --muted-foreground: 215 15% 65%;
+
+    --accent: 25 95% 65%;
+    --accent-foreground: 215 30% 8%;
+
+    --trust: 215 35% 20%;
+    --trust-foreground: 0 0% 95%;
+
+    --wellness: 140 30% 20%;
+    --wellness-foreground: 140 40% 80%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 215 20% 20%;
+    --input: 215 20% 20%;
+    --ring: 174 58% 45%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
