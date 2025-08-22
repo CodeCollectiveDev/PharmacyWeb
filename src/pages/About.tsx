@@ -54,7 +54,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-trust mb-6">
-              About CarePoint Pharmacy
+              About Metmma Pharmacy
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
               Serving our community with trusted pharmaceutical care and genuine compassion since 1995.
@@ -71,7 +71,7 @@ const About = () => {
               <h2 className="text-3xl font-bold text-trust mb-6">Our Story</h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  CarePoint Pharmacy was founded in 1995 by Dr. Sarah Johnson with a simple mission: 
+                  Metmma Pharmacy is a family company with a simple mission: 
                   to provide exceptional pharmaceutical care in a warm, welcoming environment where 
                   every customer feels valued and cared for.
                 </p>

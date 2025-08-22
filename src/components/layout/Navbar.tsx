@@ -15,10 +15,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-              <Pill className="w-5 h-5 text-primary-foreground" />
+            <div className="w-12 h-12 flex items-center justify-center">
+              {/* Relative path to logo -- in Public folder  */}
+              <img src="../../../Public/logo.png" alt="Logo.png" />
             </div>
-            <span className="text-xl font-bold text-trust">CarePoint Pharmacy</span>
+            <span className="text-xl font-bold text-trust">Metmma Pharmacy</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -98,7 +99,7 @@ const Navbar = () => {
               <div className="px-4 pt-2">
                 <Button size="sm" className="w-full">
                   <Phone className="w-4 h-4 mr-2" />
-                  Call (555) 123-4567
+                  Call (+265) 994-399-885
                 </Button>
               </div>
             </div>

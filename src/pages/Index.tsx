@@ -33,9 +33,9 @@ const Index = () => {
   ];
 
   const stats = [
-    { number: '25+', label: 'Years Serving Community' },
+    { number: '1+', label: 'Years Serving Community' },
     { number: '5,000+', label: 'Families We Serve' },
-    { number: '24/7', label: 'Emergency Support' },
+    { number: 'Daily', label: 'Service' },
     { number: '99%', label: 'Customer Satisfaction' }
   ];
 
@@ -51,11 +51,11 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div>
-                <Badge className="bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30 mb-4">
-                  Trusted Since 1995
-                </Badge>
+                {/* <Badge className="bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30 mb-4">
+                  Trusted Since 2025
+                </Badge> */}
                 <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
-                  Your Trusted <span className="text-accent">Neighborhood</span> Pharmacy
+                  Your Trusted <span className="text-accent">Reliable</span> Pharmacy
                 </h1>
                 <p className="text-xl text-primary-foreground/90 leading-relaxed">
                   Comprehensive pharmaceutical care with a personal touch. We're here to support your health journey with expert guidance, quality medications, and genuine compassion.
@@ -69,7 +69,7 @@ const Index = () => {
                 </Button>
                 <Button variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary">
                   <Phone className="w-5 h-5 mr-2" />
-                  Call (555) 123-4567
+                  Call (+265) 994-399-885
                 </Button>
               </div>
 
@@ -80,7 +80,7 @@ const Index = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Shield className="w-4 h-4" />
-                  <span>Licensed Pharmacists</span>
+                  <span>Licensed Pharmacist</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Heart className="w-4 h-4" />
@@ -166,14 +166,14 @@ const Index = () => {
             <div className="space-y-6">
               <div>
                 <Badge className="bg-primary/20 text-primary mb-4">
-                  About CarePoint Pharmacy
+                  About Metmma Pharmacy
                 </Badge>
                 <h2 className="text-4xl font-bold text-trust mb-6">
                   Caring for Our Community Since 1995
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Founded by Dr. Sarah Johnson, CarePoint Pharmacy has been a cornerstone of healthcare 
-                  in our community for over 25 years. We combine traditional pharmaceutical care with 
+                  Metmma Pharmacy is a cornerstone of healthcare 
+                  in the community. We combine traditional pharmaceutical care with 
                   modern technology and clinical expertise.
                 </p>
               </div>
@@ -183,7 +183,7 @@ const Index = () => {
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                     <Users className="w-4 h-4 text-primary-foreground" />
                   </div>
-                  <span className="text-trust font-medium">Licensed pharmacists with 15+ years experience</span>
+                  <span className="text-trust font-medium">Licensed pharmacist with 3+ years experience</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">

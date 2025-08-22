@@ -9,13 +9,13 @@ const Services = () => {
       icon: Pill,
       title: 'Prescription Refills',
       description: 'Fast, accurate prescription filling with automatic refill reminders and convenient pickup options.',
-      features: ['Same-day filling', 'Automatic refill reminders', 'Insurance coordination', 'Generic alternatives']
+      features: ['Same-day filling', 'Automatic refill reminders']
     },
     {
       icon: Stethoscope,
       title: 'Health Screenings',
       description: 'Comprehensive health screenings to monitor your wellness and catch potential issues early.',
-      features: ['Blood pressure monitoring', 'Cholesterol testing', 'Diabetes screening', 'BMI assessment']
+      features: ['Blood pressure monitoring', 'Cholesterol testing', 'Diabetes screening']
     },
     {
       icon: Shield,
