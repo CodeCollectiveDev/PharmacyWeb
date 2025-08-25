@@ -21,14 +21,15 @@ const NotFound = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-green-100 px-4">
       <div className="max-w-md w-full text-center bg-white rounded-2xl shadow-xl p-8 md:p-10 transition-all hover:shadow-2xl">
+        
         {/* Icon */}
         <div className="mb-6">
           <div className="relative inline-flex">
-            <div className="w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center">
               <svg 
-                className="w-12 h-12 text-blue-500" 
+                className="w-12 h-12 text-green-500" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -71,7 +72,7 @@ const NotFound = () => {
           
           <button
             onClick={handleGoHome}
-            className="px-5 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-colors flex items-center justify-center"
+            className="px-5 py-3 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition-colors flex items-center justify-center"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -84,10 +85,10 @@ const NotFound = () => {
         <div className="mt-8 pt-6 border-t border-gray-200">
           <p className="text-sm text-gray-500 mb-2">Need help?</p>
           <div className="flex justify-center space-x-4">
-            <a href="/support" className="text-blue-500 hover:text-blue-700 text-sm">
+            <a href="/support" className="text-green-500 hover:text-green-700 text-sm">
               Contact Support
             </a>
-            <a href="/faq" className="text-blue-500 hover:text-blue-700 text-sm">
+            <a href="/faq" className="text-green-500 hover:text-green-700 text-sm">
               Visit FAQ
             </a>
           </div>

@@ -1,42 +1,41 @@
-import { ArrowRight, Shield, Heart, Users, Clock, Phone, Pill, Stethoscope, UserCheck } from 'lucide-react';
+import { ArrowRight, Shield, Heart, Users, Clock, MessageCircle, MapPinHouse, Pill, Stethoscope, UserCheck, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-// Removed image imports to fix 500 errors
 
 const Index = () => {
   const services = [
     {
       icon: Pill,
-      title: 'Prescription Refills',
+      title: 'Prescription fills & Refills',
       description: 'Fast, accurate prescription filling with convenient pickup and delivery options.',
       color: 'text-primary'
     },
     {
       icon: Stethoscope,
       title: 'Health Screenings',
-      description: 'Blood pressure, cholesterol, and diabetes monitoring for better health management.',
+      description: 'Blood pressure, and weight check for better health management.',
       color: 'text-accent'
     },
     {
       icon: Shield,
-      title: 'Vaccinations',
-      description: 'Complete vaccination services including flu shots, COVID-19, and travel vaccines.',
+      title: 'Medical tests',
+      description: 'Complete lab test services including Malaria...',
       color: 'text-trust'
     },
     {
       icon: UserCheck,
       title: 'Medication Counseling',
-      description: 'Expert pharmacist consultations for medication management and safety.',
+      description: 'Expert pharmacist consultations to ensure safe and effective medication use.',
       color: 'text-wellness-foreground'
     }
   ];
 
   const stats = [
     { number: '1+', label: 'Years Serving Community' },
-    { number: '5,000+', label: 'Families We Serve' },
+    { number: '100+', label: 'Products' },
     { number: 'Daily', label: 'Service' },
-    { number: '99%', label: 'Customer Satisfaction' }
+    { number: 'Total', label: 'Customer Satisfaction' }
   ];
 
   return (
@@ -50,26 +49,35 @@ const Index = () => {
         <div className="relative container mx-auto px-4 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <div>
-                {/* <Badge className="bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30 mb-4">
-                  Trusted Since 2025
-                </Badge> */}
+              <div>               
                 <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
                   Your Trusted <span className="text-accent">Reliable</span> Pharmacy
                 </h1>
                 <p className="text-xl text-primary-foreground/90 leading-relaxed">
-                  Comprehensive pharmaceutical care with a personal touch. We're here to support your health journey with expert guidance, quality medications, and genuine compassion.
+                  We are committed to being the community’s most trusted and convenient partner in health and wellness. With compassion, innovation, and patient-centered care at the heart of everything we do, our mission is simple — to serve every customer with courtesy while promoting healthier lives.
                 </p>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-cta">
-                  <Pill className="w-5 h-5 mr-2" />
-                  Refill Prescription
+                  <MapPinHouse className="w-5 h-5 mr-2" />
+                  Visit Us
                 </Button>
-                <Button variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-                  <Phone className="w-5 h-5 mr-2" />
-                  Call (+265) 994-399-885
+                {/* CTA Button to link to whatsapp with a preset message */}
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="lg"
+                  onClick={() =>
+                    window.open(
+                      "https://wa.me/265994399885?text=Hello%20Metmma%20Pharmacy,%20I%20need%20assistance",
+                      "_blank"
+                    )
+                  }
+                  className="px-5 py-2 border text-black font-medium rounded-lg transition-colors hover:bg-transparent hover:text-white shadow-sm flex items-center"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Message Us
                 </Button>
               </div>
 
@@ -84,7 +92,7 @@ const Index = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Heart className="w-4 h-4" />
-                  <span>Community Focused</span>
+                  <span>Customer-centered</span>
                 </div>
               </div>
             </div>
@@ -120,8 +128,7 @@ const Index = () => {
               Comprehensive Healthcare Services
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              From prescription medications to preventive care, we provide complete pharmaceutical services 
-              to keep you and your family healthy.
+              We are committed to offer the best pharmaceutical services.
             </p>
           </div>
 
@@ -169,7 +176,7 @@ const Index = () => {
                   About Metmma Pharmacy
                 </Badge>
                 <h2 className="text-4xl font-bold text-trust mb-6">
-                  Caring for Our Community Since 1995
+                  Providing patient-centered care.
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Metmma Pharmacy is a cornerstone of healthcare 
@@ -183,7 +190,7 @@ const Index = () => {
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                     <Users className="w-4 h-4 text-primary-foreground" />
                   </div>
-                  <span className="text-trust font-medium">Licensed pharmacist with 3+ years experience</span>
+                  <span className="text-trust font-medium">Licensed pharmacist with 2+ years experience</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
@@ -195,7 +202,7 @@ const Index = () => {
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                     <Shield className="w-4 h-4 text-primary-foreground" />
                   </div>
-                  <span className="text-trust font-medium">Comprehensive health screenings and vaccinations</span>
+                  <span className="text-trust font-medium">Comprehensive health screenings and medication</span>
                 </div>
               </div>
 
@@ -218,22 +225,34 @@ const Index = () => {
               Ready to Experience Better Healthcare?
             </h2>
             <p className="text-xl mb-10 opacity-90">
-              Join thousands of families who trust CarePoint Pharmacy for their medication needs and health guidance. 
+              Trusted by families for quality care, Metmma Pharmacy makes getting your medicines simple. 
               Visit us today or call to transfer your prescriptions.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-cta">
-                <Phone className="w-5 h-5 mr-2" />
-                Call (555) 123-4567
-              </Button>
-              <Button variant="outline" size="lg" className="border-trust-foreground/30 text-trust-foreground hover:bg-trust-foreground hover:text-trust">
-                Visit Our Location
+                <MapPinHouse className="w-5 h-5 mr-2" />
+                Visit Us
                 <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+              <Button 
+                type="button"
+                onClick={() =>
+                  window.open(
+                    "https://wa.me/265994399885?text=Hello%20Metmma%20Pharmacy,%20I%20need%20assistance",
+                    "_blank"
+                  )}
+                variant="outline" 
+                size="lg" 
+                className="px-5 py-2 border text-black 
+                  font-medium rounded-lg transition-colors 
+                  hover:bg-transparent hover:text-white shadow-sm">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Message Us
               </Button>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            {/* <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div className="bg-trust-foreground/10 rounded-lg p-6">
                 <Clock className="w-8 h-8 text-accent mb-3 mx-auto" />
                 <h3 className="text-lg font-semibold mb-2">Extended Hours</h3>
@@ -249,7 +268,7 @@ const Index = () => {
                 <h3 className="text-lg font-semibold mb-2">Personal Care</h3>
                 <p className="text-sm opacity-90">One-on-one consultations<br/>with licensed pharmacists</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

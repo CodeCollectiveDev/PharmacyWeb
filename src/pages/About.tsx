@@ -1,22 +1,22 @@
-import { Heart, Award, Users, Clock } from 'lucide-react';
+import { Stethoscope, Award, Users, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 // Removed image import to fix 500 error
 
 const About = () => {
   const values = [
     {
-      icon: Heart,
-      title: 'Compassionate Care',
+      icon: Stethoscope,
+      title: 'Professionalism',
       description: 'We treat every customer like family, providing personalized attention and genuine care.'
     },
     {
       icon: Award,
-      title: 'Professional Excellence',
-      description: 'Our licensed pharmacists maintain the highest standards of pharmaceutical care and expertise.'
+      title: 'Integrity',
+      description: 'Our licensed staff maintain the highest standards of pharmaceutical care and expertise.'
     },
     {
       icon: Users,
-      title: 'Community Focus',
+      title: 'Customer Respect',
       description: 'Deeply rooted in our community, we understand and serve our neighbors\' unique health needs.'
     },
     {
@@ -28,22 +28,22 @@ const About = () => {
 
   const team = [
     {
-      name: 'Dr. Sarah Johnson, PharmD',
+      name: 'Mercy Kamanga',
       role: 'Chief Pharmacist & Owner',
-      description: 'With over 15 years of experience, Dr. Johnson founded CarePoint Pharmacy to bring personalized healthcare to our community.',
-      credentials: 'PharmD, University of Health Sciences | Board Certified Pharmacist'
+      description: 'With over 2 years of experience, she brings the best of her knowledge and care to our pharmacy.',
+      credentials: 'Kamuzu University of Health Sciences (KUHES/COM) | Board Certified Pharmacist'
     },
     {
-      name: 'Michael Chen, PharmD',
-      role: 'Clinical Pharmacist',
-      description: 'Specializes in medication therapy management and works closely with local physicians to optimize patient care.',
-      credentials: 'PharmD, State College of Pharmacy | Certified Diabetes Educator'
+      name: 'John Doe',
+      role: 'Cashier',
+      description: 'With knowledge in customer service, John ensures a smooth and friendly experience for every visitor.',
+      credentials: 'Mr. '
     },
     {
-      name: 'Lisa Martinez',
-      role: 'Lead Pharmacy Technician',
-      description: 'With 10+ years in pharmacy services, Lisa ensures every prescription is prepared with precision and care.',
-      credentials: 'Certified Pharmacy Technician | CPhT License #PT5678'
+      name: 'Mary Smith',
+      role: 'Cleaner',
+      description: 'Her attention to detail keeps our pharmacy spotless and welcoming for all our customers.',
+      credentials: 'Miss Smith'
     }
   ];
 
@@ -57,7 +57,7 @@ const About = () => {
               About Metmma Pharmacy
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              Serving our community with trusted pharmaceutical care and genuine compassion since 1995.
+              Providing patient-centered care while fostering a culture of compassion and innovation.
             </p>
           </div>
         </div>
@@ -91,7 +91,7 @@ const About = () => {
               <div className="w-full h-64 bg-gradient-to-br from-primary/20 to-trust/20 rounded-lg shadow-card flex items-center justify-center">
                 <div className="text-center text-muted-foreground">
                   <Users className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                  <p className="text-sm">CarePoint Pharmacy Team</p>
+                  <p className="text-sm">Metmma Pharmacy Team</p>
                 </div>
               </div>
             </div>

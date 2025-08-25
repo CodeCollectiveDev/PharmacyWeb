@@ -10,35 +10,35 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Phone',
-      details: ['(555) 123-4567', 'Emergency: (555) 123-HELP'],
+      details: ['265 994 399 885'],
       description: 'Call us for prescriptions, questions, or emergencies'
     },
     {
       icon: Mail,
       title: 'Email',
-      details: ['info@carepointpharmacy.com', 'prescriptions@carepointpharmacy.com'],
+      details: ['info@metmmapharmacy.com', 'prescriptions@metmmapharmacy.com'],
       description: 'Email us for non-urgent inquiries and prescription transfers'
     },
     {
       icon: MapPin,
       title: 'Location',
-      details: ['123 Main Street', 'Community City, ST 12345'],
-      description: 'Convenient downtown location with parking available'
+      details: ['Nanjiri', 'along M1, Lilongwe', 'Malawi'],
+      description: 'Convenient alongside the road location with parking available'
     },
     {
       icon: Clock,
       title: 'Hours',
-      details: ['Mon-Fri: 8:00 AM - 8:00 PM', 'Sat-Sun: 9:00 AM - 6:00 PM'],
+      details: ['Mon-Sat: 8:00 AM - 5:00 PM', 'Sun & Holidays: 8:00 AM - 2:00 PM'],
       description: 'Extended hours to serve you better'
     }
   ];
 
-  const quickContacts = [
-    { title: 'Prescription Refills', phone: '(555) 123-4567', desc: 'Press 1' },
-    { title: 'New Prescriptions', phone: '(555) 123-4567', desc: 'Press 2' },
-    { title: 'Insurance Questions', phone: '(555) 123-4567', desc: 'Press 3' },
-    { title: 'Pharmacist Consultation', phone: '(555) 123-4567', desc: 'Press 4' },
-  ];
+  // const quickContacts = [
+  //   { title: 'Prescription Refills', phone: '265 994 388 995', desc: 'Press 1' },
+  //   { title: 'New Prescriptions', phone: '(555) 123-4567', desc: 'Press 2' },
+  //   { title: 'Insurance Questions', phone: '(555) 123-4567', desc: 'Press 3' },
+  //   { title: 'Pharmacist Consultation', phone: '(555) 123-4567', desc: 'Press 4' },
+  // ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -47,7 +47,7 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-trust mb-6">
-              Contact CarePoint Pharmacy
+              Contact Metmma Pharmacy
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
               We're here to help with all your medication needs and health questions. Reach out to us anytime.
@@ -140,7 +140,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <Label htmlFor="phone" className="text-trust">Phone Number</Label>
-                      <Input id="phone" type="tel" placeholder="(555) 123-4567" className="mt-1" />
+                      <Input id="phone" type="tel" placeholder="(265) 987-654-321" className="mt-1" />
                     </div>
                     <div>
                       <Label htmlFor="subject" className="text-trust">Subject</Label>
@@ -168,7 +168,7 @@ const Contact = () => {
       </section>
 
       {/* Quick Contact Options */}
-      <section className="py-16">
+      {/* <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-trust mb-4">Quick Contact Options</h2>
@@ -194,34 +194,30 @@ const Contact = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Emergency Contact */}
+      {/* Newsletter Signup */}
       <section className="py-16 bg-gradient-trust text-trust-foreground">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">Emergency Services</h2>
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-6">Stay Informed</h2>
             <p className="text-lg mb-8 opacity-90">
-              For urgent medication needs outside regular business hours, we provide 24/7 emergency services.
+              Subscribe to our monthly health newsletter for the latest medication updates, 
+              seasonal health tips, and wellness advice from our pharmacists.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-trust-foreground/10 rounded-lg p-6">
-                <Phone className="w-12 h-12 text-accent mb-4 mx-auto" />
-                <h3 className="text-xl font-semibold mb-2">24/7 Emergency Line</h3>
-                <p className="text-lg font-bold text-accent mb-2">(555) 123-HELP</p>
-                <p className="text-sm opacity-90">
-                  For urgent prescription needs and emergency pharmacist consultation
-                </p>
-              </div>
-              <div className="bg-trust-foreground/10 rounded-lg p-6">
-                <Clock className="w-12 h-12 text-accent mb-4 mx-auto" />
-                <h3 className="text-xl font-semibold mb-2">Emergency Refills</h3>
-                <p className="text-lg font-bold text-accent mb-2">Available 24/7</p>
-                <p className="text-sm opacity-90">
-                  Emergency supplies for critical medications when regular pharmacy is closed
-                </p>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input 
+                type="email" 
+                placeholder="Enter your email address"
+                className="flex-1 px-4 py-3 rounded-lg text-foreground bg-background border-0 focus:ring-2 focus:ring-accent"
+              />
+              <Button className="bg-accent hover:bg-accent/90 px-8">
+                Subscribe
+              </Button>
             </div>
+            <p className="text-xs mt-4 opacity-75">
+              We respect your privacy. Unsubscribe anytime. No spam, just helpful health information.
+            </p>
           </div>
         </div>
       </section>

@@ -18,14 +18,14 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
-    /* Primary: Calming Teal - Main brand color */
-    --primary: 174 58% 35%;
+    /* Primary: Healthcare Green (accent as main brand color) */
+    --primary: 142 70% 35%; /* deep green */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 174 58% 45%;
+    --primary-glow: 142 70% 45%; /* lighter glowing green */
 
-    /* Secondary: Soft Blue - Supporting color */
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 215 25% 15%;
+    /* Secondary: Teal as supporting color */
+    --secondary: 174 58% 35%;
+    --secondary-foreground: 0 0% 100%;
 
     /* Muted: Light grays for backgrounds */
     --muted: 210 15% 97%;
@@ -48,31 +48,26 @@ All colors MUST be HSL.
 
     --border: 210 20% 90%;
     --input: 210 20% 95%;
-    --ring: 174 58% 35%;
+    --ring: 142 70% 35%;
 
     --radius: 0.5rem;
 
+    /* Sidebar */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
+    --sidebar-primary: 142 70% 30%;
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 142 70% 35%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
-    /* Gradients for hero and sections */
+    /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-wellness: linear-gradient(180deg, hsl(var(--wellness)), hsl(var(--background)));
     --gradient-trust: linear-gradient(135deg, hsl(var(--trust)), hsl(var(--primary)));
 
-    /* Shadows for depth */
+    /* Shadows */
     --shadow-soft: 0 4px 20px hsl(var(--primary) / 0.08);
     --shadow-card: 0 8px 30px hsl(var(--primary) / 0.12);
     --shadow-cta: 0 4px 15px hsl(var(--accent) / 0.3);
@@ -92,12 +87,12 @@ All colors MUST be HSL.
     --popover: 215 25% 12%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 174 58% 45%;
+    --primary: 142 70% 45%;
     --primary-foreground: 215 30% 8%;
-    --primary-glow: 174 58% 55%;
+    --primary-glow: 142 70% 55%;
 
-    --secondary: 215 20% 18%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 174 58% 35%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 215 20% 18%;
     --muted-foreground: 215 15% 65%;
@@ -116,16 +111,17 @@ All colors MUST be HSL.
 
     --border: 215 20% 20%;
     --input: 215 20% 20%;
-    --ring: 174 58% 45%;
+    --ring: 142 70% 45%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary: 142 70% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+    --sidebar-ring: 142 70% 45%;
+  }  
 }
 
 @layer base {
