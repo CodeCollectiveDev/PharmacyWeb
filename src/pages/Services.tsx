@@ -15,19 +15,19 @@ const Services = () => {
       icon: Stethoscope,
       title: 'Health Screenings',
       description: 'Comprehensive health screenings to monitor your wellness and catch potential issues early.',
-      features: ['Blood pressure monitoring', 'Cholesterol testing', 'Diabetes screening']
+      features: ['Blood pressure monitoring', 'Diabetes screening']
     },
     {
       icon: Shield,
-      title: 'Vaccinations',
-      description: 'Stay protected with our comprehensive vaccination services for all ages.',
-      features: ['Flu shots', 'COVID-19 vaccines', 'Travel vaccines', 'Routine immunizations']
+      title: 'Medical Tests',
+      description: 'Stay informed of your health status.',
+      features: ['Malaria Tests', 'Pregnancy Tests']
     },
     {
       icon: UserCheck,
       title: 'Medication Counseling',
       description: 'Expert guidance on medication management, interactions, and proper usage.',
-      features: ['Drug interaction checks', 'Dosage optimization', 'Side effect management', 'Adherence coaching']
+      features: ['Dosage optimization', 'Side effect management', 'Adherence coaching']
     },
     {
       icon: Heart,
@@ -64,10 +64,10 @@ const Services = () => {
             <p className="text-lg text-muted-foreground mb-8">
               From prescription medications to preventive care, we provide complete healthcare solutions tailored to your needs.
             </p>
-            <Button size="lg" className="bg-accent hover:bg-accent/90 shadow-cta">
+            {/* <Button size="lg" className="bg-accent hover:bg-accent/90 shadow-cta">
               <Phone className="w-4 h-4 mr-2" />
               Call (555) 123-4567
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>
@@ -150,7 +150,7 @@ const Services = () => {
       </section>
 
       {/* Additional Services */}
-      <section className="py-16">
+      {/* <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-trust mb-4">Additional Services</h2>
@@ -169,10 +169,10 @@ const Services = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Emergency Services */}
-      <section className="py-16 bg-gradient-trust text-trust-foreground">
+      {/* <section className="py-16 bg-gradient-trust text-trust-foreground">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Emergency & After-Hours Support</h2>
@@ -200,7 +200,7 @@ const Services = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

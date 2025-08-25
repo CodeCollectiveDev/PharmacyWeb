@@ -61,8 +61,8 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Services</h4>
             <ul className="space-y-1 text-sm text-trust-foreground/80">
-              <li>Prescription Refills</li>
-              <li>Vaccinations</li>
+              <li>Prescription Fills & Refills</li>
+              <li>Medical Test</li>
               <li>Health Screenings</li>
               <li>Medication Counseling</li>
             </ul>

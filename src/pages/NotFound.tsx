@@ -49,8 +49,7 @@ const NotFound = () => {
         
         {/* Description */}
         <p className="text-gray-600 mb-6">
-          Oops! The page you're looking for seems to have wandered off into the digital unknown. 
-          It might have been moved, deleted, or perhaps you typed something incorrectly.
+          Oops! We could not find the page you have requested.
         </p>
         
         {/* Current Path */}

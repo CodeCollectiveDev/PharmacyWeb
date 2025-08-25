@@ -2,6 +2,7 @@ import { ArrowRight, Shield, Heart, Users, Clock, MessageCircle, MapPinHouse, Pi
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { NavLink } from 'react-router-dom';
 
 const Index = () => {
   const services = [
@@ -149,10 +150,16 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button variant="outline" size="lg" className="hover:bg-primary hover:text-primary-foreground">
+            <NavLink
+              to="/services"
+              className="hover:bg-primary hover:text-primary-foreground flex gap-3 w-13 h-15 items-center justify-center p-3 rounded-lg"
+              onClick={() => {
+
+              }}
+            >
               View All Services
               <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            </NavLink>
           </div>
         </div>
       </section>
