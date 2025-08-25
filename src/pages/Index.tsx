@@ -1,4 +1,4 @@
-import { ArrowRight, Shield, Heart, Users, Clock, MessageCircle, MapPinHouse, Pill, Stethoscope, UserCheck, Phone } from 'lucide-react';
+import { ArrowRight, Shield, Heart, Users, Clock, MessageCircle, MapPinHouse, Pill, Stethoscope, UserCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -8,63 +8,53 @@ const Index = () => {
   const services = [
     {
       icon: Pill,
-      title: 'Prescription fills & Refills',
-      description: 'Fast, accurate prescription filling with convenient pickup and delivery options.',
-      color: 'text-primary'
+      title: 'Prescription Fills & Refills',
+      description: 'Fast, accurate prescription services with convenient pickup.',
     },
     {
       icon: Stethoscope,
       title: 'Health Screenings',
-      description: 'Blood pressure, and weight check for better health management.',
-      color: 'text-accent'
+      description: 'Blood pressure and weight checks for better health tracking.',
     },
     {
       icon: Shield,
-      title: 'Medical tests',
-      description: 'Complete lab test services including Malaria...',
-      color: 'text-trust'
+      title: 'Medical Tests',
+      description: 'Basic lab test services including Malaria and more.',
     },
     {
       icon: UserCheck,
       title: 'Medication Counseling',
-      description: 'Expert pharmacist consultations to ensure safe and effective medication use.',
-      color: 'text-wellness-foreground'
-    }
+      description: 'Talk to a pharmacist for safe and effective medication use.',
+    },
   ];
 
   const stats = [
     { number: '1+', label: 'Years Serving Community' },
-    { number: '100+', label: 'Products' },
+    { number: '100+', label: 'Products Available' },
     { number: 'Daily', label: 'Service' },
-    { number: 'Total', label: 'Customer Satisfaction' }
+    { number: 'Trusted', label: 'By Local Families' },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative bg-gradient-hero text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary-glow/80"></div>
-        </div>
-        
-        <div className="relative container mx-auto px-4 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div>               
-                <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
-                  Your Trusted <span className="text-accent">Reliable</span> Pharmacy
-                </h1>
-                <p className="text-xl text-primary-foreground/90 leading-relaxed">
-                  We are committed to being the community’s most trusted and convenient partner in health and wellness. With compassion, innovation, and patient-centered care at the heart of everything we do, our mission is simple — to serve every customer with courtesy while promoting healthier lives.
-                </p>
-              </div>
-              
+      <section className="bg-muted/40 border-b">
+        <div className="container mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div className="space-y-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-trust">
+                Your Local, Reliable Pharmacy
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                At Metmma Pharmacy, we’re here to provide accessible and caring
+                service for every member of our community. Our focus is simple —
+                safe medicines, helpful advice, and personal care.
+              </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-cta">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white">
                   <MapPinHouse className="w-5 h-5 mr-2" />
                   Visit Us
                 </Button>
-                {/* CTA Button to link to whatsapp with a preset message */}
                 <Button
                   type="button"
                   variant="outline"
@@ -75,14 +65,14 @@ const Index = () => {
                       "_blank"
                     )
                   }
-                  className="px-5 py-2 border text-black font-medium rounded-lg transition-colors hover:bg-transparent hover:text-white shadow-sm flex items-center"
+                  className="flex items-center"
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Message Us
                 </Button>
               </div>
 
-              <div className="flex items-center space-x-6 text-sm text-primary-foreground/80">
+              <div className="flex items-center space-x-6 text-sm text-muted-foreground pt-4">
                 <div className="flex items-center space-x-2">
                   <Clock className="w-4 h-4" />
                   <span>Open Daily</span>
@@ -93,27 +83,31 @@ const Index = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Heart className="w-4 h-4" />
-                  <span>Customer-centered</span>
+                  <span>Friendly Service</span>
                 </div>
               </div>
             </div>
-
             <div className="hidden lg:block">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent rounded-lg"></div>
-              </div>
+              <img
+                src="/Pharmacy-shelves.jpg"
+                height={20}
+                alt="Pharmacy shelves"
+                className="rounded-lg shadow-sm"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-muted">
+      {/* Stats */}
+      <section className="py-12 bg-white border-b">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
+                <div className="text-2xl md:text-3xl font-bold text-primary mb-2">
+                  {stat.number}
+                </div>
                 <div className="text-muted-foreground">{stat.label}</div>
               </div>
             ))}
@@ -121,161 +115,102 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20">
+      {/* Services */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-trust mb-6">
-              Comprehensive Healthcare Services
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              We are committed to offer the best pharmaceutical services.
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-trust mb-4">Our Services</h2>
+            <p className="text-muted-foreground">
+              We provide essential healthcare services tailored to your needs.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
-              <Card key={index} className="border-0 shadow-card hover:shadow-cta transition-smooth group">
+              <Card key={index} className="shadow-sm hover:shadow-md transition p-4">
                 <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-bounce">
-                    <service.icon className="w-8 h-8 text-primary-foreground" />
-                  </div>
-                  <CardTitle className="text-xl text-trust">{service.title}</CardTitle>
+                  <service.icon className="w-8 h-8 text-primary mb-3 mx-auto" />
+                  <CardTitle className="text-lg">{service.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-muted-foreground">{service.description}</p>
+                <CardContent className="text-center text-muted-foreground text-sm">
+                  {service.description}
                 </CardContent>
               </Card>
             ))}
           </div>
-
-          <div className="text-center mt-12">
+          <div className="text-center mt-8">
             <NavLink
               to="/services"
-              className="hover:bg-primary hover:text-primary-foreground flex gap-3 w-13 h-15 items-center justify-center p-3 rounded-lg"
-              onClick={() => {
-
-              }}
+              className="text-primary hover:underline inline-flex items-center"
             >
-              View All Services
-              <ArrowRight className="w-4 h-4 ml-2" />
+              View All Services <ArrowRight className="w-4 h-4 ml-2" />
             </NavLink>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-20 bg-gradient-wellness">
+      {/* About */}
+      <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <div className="w-full h-64 bg-gradient-to-br from-primary/20 to-trust/20 rounded-lg shadow-card flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <Users className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                  <p className="text-sm">Pharmacist Consultation</p>
-                </div>
-              </div>
-            </div>
-            
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="space-y-6">
-              <div>
-                <Badge className="bg-primary/20 text-primary mb-4">
-                  About Metmma Pharmacy
-                </Badge>
-                <h2 className="text-4xl font-bold text-trust mb-6">
-                  Providing patient-centered care.
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Metmma Pharmacy is a cornerstone of healthcare 
-                  in the community. We combine traditional pharmaceutical care with 
-                  modern technology and clinical expertise.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                    <Users className="w-4 h-4 text-primary-foreground" />
-                  </div>
-                  <span className="text-trust font-medium">Licensed pharmacist with 2+ years experience</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                    <Heart className="w-4 h-4 text-primary-foreground" />
-                  </div>
-                  <span className="text-trust font-medium">Personalized medication counseling and support</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                    <Shield className="w-4 h-4 text-primary-foreground" />
-                  </div>
-                  <span className="text-trust font-medium">Comprehensive health screenings and medication</span>
-                </div>
-              </div>
-
-              <div className="pt-4">
-                <Button size="lg" variant="outline" className="hover:bg-trust hover:text-trust-foreground">
-                  Learn More About Us
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </div>
+              <Badge className="bg-primary/10 text-primary">About Us</Badge>
+              <h2 className="text-3xl font-bold text-trust">
+                Caring for Our Community
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Metmma Pharmacy is proud to serve as a trusted health partner for
+                local families. From prescription support to health advice, our
+                team is here to help every step of the way.
+              </p>
+              <Button
+                size="lg"
+                variant="outline"
+                className="hover:bg-primary hover:text-white"
+              >
+                Learn More <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+            <div className="bg-white rounded-lg p-6 shadow-sm">
+              <Users className="w-10 h-10 text-primary mb-3" />
+              <p className="text-muted-foreground">
+                A licensed pharmacist with years of experience, offering
+                personalized care and attention.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-trust text-trust-foreground">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-6">
-              Ready to Experience Better Healthcare?
-            </h2>
-            <p className="text-xl mb-10 opacity-90">
-              Trusted by families for quality care, Metmma Pharmacy makes getting your medicines simple. 
-              Visit us today or call to transfer your prescriptions.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-cta">
-                <MapPinHouse className="w-5 h-5 mr-2" />
-                Visit Us
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-              <Button 
-                type="button"
-                onClick={() =>
-                  window.open(
-                    "https://wa.me/265994399885?text=Hello%20Metmma%20Pharmacy,%20I%20need%20assistance",
-                    "_blank"
-                  )}
-                variant="outline" 
-                size="lg" 
-                className="px-5 py-2 border text-black 
-                  font-medium rounded-lg transition-colors 
-                  hover:bg-transparent hover:text-white shadow-sm">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Message Us
-              </Button>
-            </div>
-
-            {/* <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-              <div className="bg-trust-foreground/10 rounded-lg p-6">
-                <Clock className="w-8 h-8 text-accent mb-3 mx-auto" />
-                <h3 className="text-lg font-semibold mb-2">Extended Hours</h3>
-                <p className="text-sm opacity-90">Mon-Fri 8AM-8PM<br/>Weekends 9AM-6PM</p>
-              </div>
-              <div className="bg-trust-foreground/10 rounded-lg p-6">
-                <Phone className="w-8 h-8 text-accent mb-3 mx-auto" />
-                <h3 className="text-lg font-semibold mb-2">24/7 Emergency</h3>
-                <p className="text-sm opacity-90">Emergency line available<br/>for urgent needs</p>
-              </div>
-              <div className="bg-trust-foreground/10 rounded-lg p-6">
-                <Heart className="w-8 h-8 text-accent mb-3 mx-auto" />
-                <h3 className="text-lg font-semibold mb-2">Personal Care</h3>
-                <p className="text-sm opacity-90">One-on-one consultations<br/>with licensed pharmacists</p>
-              </div>
-            </div> */}
+      {/* CTA */}
+      <section className="py-16 bg-primary/90 text-white">
+        <div className="container mx-auto px-4 text-center max-w-2xl">
+          <h2 className="text-3xl font-bold mb-4">
+            Ready to Visit Metmma Pharmacy?
+          </h2>
+          <p className="mb-8 opacity-90">
+            We’re here every day to serve you. Drop by for prescriptions, advice,
+            or a friendly chat about your health.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
+              <MapPinHouse className="w-5 h-5 mr-2" />
+              Find Us
+            </Button>
+            <Button
+              type="button"
+              onClick={() =>
+                window.open(
+                  "https://wa.me/265994399885?text=Hello%20Metmma%20Pharmacy,%20I%20need%20assistance",
+                  "_blank"
+                )
+              }
+              variant="outline"
+              size="lg"
+              className="border-white text-white hover:bg-white hover:text-primary"
+            >
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Message Us
+            </Button>
           </div>
         </div>
       </section>

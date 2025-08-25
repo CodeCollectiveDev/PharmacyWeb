@@ -20,27 +20,27 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Contact Us</h4>
-            <div className="space-y-2 text-sm text-trust-foreground/80">
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4" />
-                <span>(+265) 994 399 885</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4" />
+            <ul className="space-y-2 text-sm text-trust-foreground/80">
+              <li className="flex items-center space-x-2">
+                <Phone className="w-4 h-4" aria-hidden="true" />
+                <a href="tel:+265994399885">(+265) 994 399 885</a>
+              </li>
+              <li className="flex items-center space-x-2">
+                <MapPin className="w-4 h-4" aria-hidden="true" />
                 <span>Nanjiri, P/Bag 323</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4" />
+              </li>
+              <li className="flex items-center space-x-2">
+                <Mail className="w-4 h-4" aria-hidden="true" />
                 <a 
-                aria-label="Send an email to Metmma Pharmacy"
-                href='mailto:metmmapharmacy@gmail.com?subject=Website%20Inquiry&body=Hello%20Metmma%20Pharmacy%2C%0D%0A%0D%0AI%20would%20like%20to%20inquire%20about...'
+                  aria-label="Send an email to Metmma Pharmacy"
+                  href="mailto:metmmapharmacy@gmail.com?subject=Website%20Inquiry&body=Hello%20Metmma%20Pharmacy..."
                 >
-                metmmapharmacy@gmail.com
+                  metmmapharmacy@gmail.com
                 </a>
-                
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
+
 
           {/* Hours */}
           <div className="space-y-4">
