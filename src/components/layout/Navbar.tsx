@@ -17,7 +17,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-2">
             <div className="w-12 h-12 flex items-center justify-center">
               {/* Relative path to logo -- in Public folder  */}
-              <img src="/logo.png" alt="Metmma Pharmacy logo" />
+              <img src="../Public/logo-color.svg" alt="Metmma Pharmacy logo" />
             </div>
             <span className="text-xl font-bold text-trust">Metmma Pharmacy</span>
           </div>

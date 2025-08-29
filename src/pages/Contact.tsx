@@ -56,27 +56,26 @@ const Contact = () => {
           {contactInfo.map((info, i) => (
             <Card
               key={i}
-              className="border-0 shadow-card hover:shadow-cta transition-smooth text-center group"
+              className="shadow-sm hover:shadow-md transition text-center"
             >
               <CardContent className="p-6">
                 <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-bounce">
                   <info.icon className="w-8 h-8 text-primary-foreground" />
                 </div>
-                <h3 className="text-lg font-semibold text-trust mb-3">
-                  {info.title}
-                </h3>
-                <div className="space-y-1 mb-3">
-                  {info.details.map((detail, j) => (
-                    <p key={j} className="text-foreground font-medium">
-                      {detail}
-                    </p>
-                  ))}
-                </div>
-                <p className="text-muted-foreground text-sm">
-                  {info.description}
-                </p>
+                <h3 className="text-lg font-semibold text-trust mb-3">{info.title}</h3>
+                {info.details ? (
+                  <div className="space-y-1 mb-3">
+                    {info.details.map((d, i) => (
+                      <p key={i} className="text-foreground font-medium">
+                        {d}
+                      </p>
+                    ))}
+                  </div>
+                ) : null}
+                <p className="text-muted-foreground text-sm">{info.description}</p>
               </CardContent>
             </Card>
+
           ))}
         </div>
       </section>
@@ -104,7 +103,7 @@ const Contact = () => {
                 <div>
                   <p className="font-medium text-trust">Easy Parking</p>
                   <p className="text-sm text-muted-foreground">
-                    Free parking in front & rear
+                    Free parking in front of the pharmacy
                   </p>
                 </div>
               </div>
@@ -113,7 +112,7 @@ const Contact = () => {
                 <div>
                   <p className="font-medium text-trust">Accessible Location</p>
                   <p className="text-sm text-muted-foreground">
-                    Wheelchair accessible with automatic doors
+                    Alongside Main Road (M1)
                   </p>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import { Users, Heart, Stethoscope, Award } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const About = () => {
   const values = [
@@ -59,8 +59,7 @@ const About = () => {
               From humble beginnings to a fully stocked, modern pharmacy, we
               continue to grow while maintaining our motto:
               <span className="font-semibold text-trust">
-                {" "}
-                "To serve customers with courtesy."
+                {" "} "To serve customers with courtesy."
               </span>
             </p>
           </div>
@@ -73,25 +72,21 @@ const About = () => {
       {/* Values */}
       <section className="py-16 bg-muted">
         <div className="container text-center px-4">
-          <h2 className="text-3xl font-bold text-trust mb-12">
-            Our Core Values
-          </h2>
+          <h2 className="text-3xl font-bold text-trust mb-12">Our Core Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((val, i) => (
               <Card
                 key={i}
-                className="border-0 shadow-card hover:shadow-cta transition-smooth"
+                className="shadow-sm hover:shadow-md transition text-center"
               >
-                <CardContent className="p-6 text-center">
+                <CardHeader>
                   <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-4">
                     <val.icon className="w-8 h-8 text-primary-foreground" />
                   </div>
-                  <h3 className="text-lg font-semibold text-trust mb-2">
-                    {val.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {val.description}
-                  </p>
+                  <CardTitle className="text-lg">{val.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-muted-foreground text-sm">
+                  {val.description}
                 </CardContent>
               </Card>
             ))}

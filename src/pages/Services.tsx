@@ -1,5 +1,5 @@
 import { Pill, Stethoscope, Package, ClipboardCheck } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Services = () => {
   const services = [
@@ -46,18 +46,15 @@ const Services = () => {
       <section className="py-16">
         <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
           {services.map((s, i) => (
-            <Card
-              key={i}
-              className="border-0 shadow-card hover:shadow-cta transition-smooth"
-            >
-              <CardContent className="p-6 text-center">
+            <Card key={i} className="shadow-sm hover:shadow-md transition text-center">
+              <CardHeader>
                 <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-4">
                   <s.icon className="w-8 h-8 text-primary-foreground" />
                 </div>
-                <h3 className="text-lg font-semibold text-trust mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">{s.description}</p>
+                <CardTitle className="text-lg">{s.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-muted-foreground text-sm">
+                {s.description}
               </CardContent>
             </Card>
           ))}

@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { NavLink } from 'react-router-dom';
+import BannerCarousal from '@/components/ui/bannerCarousal';
 
 const Index = () => {
   const services = [
@@ -65,7 +66,7 @@ const Index = () => {
                       "_blank"
                     )
                   }
-                  className="flex items-center"
+                  className="flex items-center hover:bg-transparent hover:text-primary"
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Message Us
@@ -88,12 +89,7 @@ const Index = () => {
               </div>
             </div>
             <div className="hidden lg:block">
-              <img
-                src="/Pharmacy-shelves.jpg"
-                height={20}
-                alt="Pharmacy shelves"
-                className="rounded-lg shadow-sm"
-              />
+              <BannerCarousal />
             </div>
           </div>
         </div>
@@ -206,7 +202,7 @@ const Index = () => {
               }
               variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white hover:text-primary"
+              className="border-white text-primary hover:bg-white hover:bg-transparent hover:text-white"
             >
               <MessageCircle className="w-5 h-5 mr-2" />
               Message Us
