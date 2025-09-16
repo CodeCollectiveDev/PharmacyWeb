@@ -4,8 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useNewsletter } from "@/hooks/use-newsletter";
 
 const Contact = () => {
+  const { email, setEmail, subscribe, isLoading } = useNewsletter();
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    subscribe(email);
+  };
+
   const contactInfo = [
     {
       icon: Phone,
@@ -171,16 +179,24 @@ const Contact = () => {
             Subscribe to our newsletter for updates, tips, and advice from our
             pharmacists.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="flex-1 px-4 py-3 rounded-lg text-foreground bg-background border-0 focus:ring-2 focus:ring-accent"
+              required
+              disabled={isLoading}
             />
-            <Button className="bg-accent hover:bg-accent/90 px-8">
-              Subscribe
+            <Button
+              type="submit"
+              className="bg-accent hover:bg-accent/90 px-8"
+              disabled={isLoading}
+            >
+              {isLoading ? "Subscribing..." : "Subscribe"}
             </Button>
-          </div>
+          </form>
           <p className="text-xs mt-4 opacity-75">
             We respect your privacy. Unsubscribe anytime.
           </p>
