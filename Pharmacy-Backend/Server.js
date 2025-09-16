@@ -34,9 +34,7 @@ const resend = new Resend(process.env.RESEND_API_KEY); // Constructing resend wi
 
 // Post route -- to send email data to Resend 
 app.post('/api/send-email', async (req, res) => {
-  const { name, email, description, message } = req.body;
-
-  res.status(200).json({ success: true, message: "Email is being sent" });
+  const { name, email, phone, subject, message } = req.body;
 
   // Wrapped in Try catch to catch errors faster
   try {
@@ -50,7 +48,8 @@ app.post('/api/send-email', async (req, res) => {
             <h2 style="text-align: center; color: #1a1a1a; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;">New Form Submission</h2>
             <div style="background-color: #f9f9f9; padding: 15px; border-radius: 6px;">
                 <p style="margin: 0 0 10px;"><strong>Email:</strong> <span style="color: #007bff;">${email}</span></p>
-                <p style="margin: 0 0 10px;"><strong>Description:</strong> ${description}</p>
+                <p style="margin: 0 0 10px;"><strong>Description:</strong> ${subject}</p>
+                <p style="margin: 0 0 10px;"><strong>Phone:</strong> ${phone}</p>
                 <p style="margin: 0;"><strong>Message:</strong></p>
                 <div style="background-color: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 4px; margin-top: 5px;">
                 <p style="margin: 0;">${message}</p>
@@ -59,7 +58,7 @@ app.post('/api/send-email', async (req, res) => {
             </div>
             `, // Email body content 
         });
-        console.log('Email sent in background');
+        res.status(200).json({ success: true, message: "Email sent successfully!" });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

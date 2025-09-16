@@ -127,14 +127,10 @@ const Contact = () => {
             <Card className="border-0 shadow-card">
               <CardContent className="p-6">
                 <form className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" placeholder="John" />
-                    </div>
-                    <div>
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" placeholder="Smith" />
+                      <Label htmlFor="name">Name</Label>
+                      <Input id="name" placeholder="John Wayne" />
                     </div>
                   </div>
                   <div>
