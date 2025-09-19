@@ -40,3 +40,10 @@
 .read-the-docs {
   color: #888;
 }
+
+.bg {
+  background-image: url(./public/Pharmacy-counter.jpg);
+  background-size: cover;
+  height: auto;
+  width: 100%;
+}

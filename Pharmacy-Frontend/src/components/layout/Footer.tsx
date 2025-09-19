@@ -1,4 +1,4 @@
-import { Heart, Phone, MapPin, Clock, Mail } from 'lucide-react';
+import { Heart, Phone, MapPin, Clock, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -31,7 +31,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" aria-hidden="true" />
-                <a 
+                <a
                   aria-label="Send an email to Metmma Pharmacy"
                   href="mailto:metmmapharmacy@gmail.com?subject=Website%20Inquiry&body=Hello%20Metmma%20Pharmacy..."
                 >
@@ -40,7 +40,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-
 
           {/* Hours */}
           <div className="space-y-4">
@@ -57,22 +56,11 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Services */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold">Services</h4>
-            <ul className="space-y-1 text-sm text-trust-foreground/80">
-              <li>Prescription Fills & Refills</li>
-              <li>Medical Test</li>
-              <li>Health Screenings</li>
-              <li>Medication Counseling</li>
-            </ul>
+          <div className="border-t border-trust-foreground/20 mt-8 pt-8 text-center">
+            <p className="text-sm text-trust-foreground/60">
+              © 2025 Metmma Pharmacy. All rights reserved.
+            </p>
           </div>
-        </div>
-
-        <div className="border-t border-trust-foreground/20 mt-8 pt-8 text-center">
-          <p className="text-sm text-trust-foreground/60">
-            © 2025 Metmma Pharmacy. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>

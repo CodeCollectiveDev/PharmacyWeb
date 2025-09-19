@@ -1,39 +1,54 @@
-import { ArrowRight, Shield, Heart, Users, Clock, MessageCircle, MapPinHouse, Pill, Stethoscope, UserCheck } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { NavLink } from 'react-router-dom';
-import BannerCarousal from '@/components/ui/bannerCarousal';
+import {
+  ArrowRight,
+  Shield,
+  Heart,
+  Users,
+  Clock,
+  MessageCircle,
+  MapPinHouse,
+  Pill,
+  Stethoscope,
+  UserCheck,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { NavLink } from "react-router-dom";
+import BannerCarousal from "@/components/ui/bannerCarousal";
+import pharmacyimage from "@/public/images/pharmacy-bg.jpg";
 
 const Index = () => {
   const services = [
     {
       icon: Pill,
-      title: 'Prescription Fills & Refills',
-      description: 'Fast, accurate prescription services with convenient pickup.',
+      title: "Prescription Fills & Refills",
+      description:
+        "Fast, accurate prescription services with convenient pickup.",
     },
     {
       icon: Stethoscope,
-      title: 'Health Screenings',
-      description: 'Blood pressure and weight checks for better health tracking.',
+      title: "Health Screenings",
+      description:
+        "Blood pressure and weight checks for better health tracking.",
     },
     {
       icon: Shield,
-      title: 'Medical Tests',
-      description: 'Basic lab test services including Malaria and more.',
+      title: "Medical Tests",
+      description: "Basic lab test services including Malaria and more.",
     },
     {
       icon: UserCheck,
-      title: 'Medication Counseling',
-      description: 'Talk to a pharmacist for safe and effective medication use.',
+      title: "Medication Counseling",
+      description:
+        "Talk to a pharmacist for safe and effective medication use.",
     },
   ];
 
   const stats = [
-    { number: '1+', label: 'Years Serving Community' },
-    { number: '100+', label: 'Products Available' },
-    { number: 'Daily', label: 'Service' },
-    { number: 'Trusted', label: 'By Local Families' },
+    { number: "1+", label: "Years Serving Community" },
+    { number: "100+", label: "Products Available" },
+    { number: "Daily", label: "Service" },
+    { number: "Trusted", label: "By Local Families" },
   ];
 
   return (
@@ -47,12 +62,15 @@ const Index = () => {
                 Your Local, Reliable Pharmacy
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                At Metmma Pharmacy, we’re here to provide accessible and caring
+                At Metmma Pharmacy, we're here to provide accessible and caring
                 service for every member of our community. Our focus is simple —
                 safe medicines, helpful advice, and personal care.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white">
+                <Button
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 text-white"
+                >
                   <MapPinHouse className="w-5 h-5 mr-2" />
                   Visit Us
                 </Button>
@@ -122,7 +140,10 @@ const Index = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
-              <Card key={index} className="shadow-sm hover:shadow-md transition p-4">
+              <Card
+                key={index}
+                className="shadow-sm hover:shadow-md transition p-4"
+              >
                 <CardHeader className="text-center">
                   <service.icon className="w-8 h-8 text-primary mb-3 mx-auto" />
                   <CardTitle className="text-lg">{service.title}</CardTitle>
@@ -154,9 +175,9 @@ const Index = () => {
                 Caring for Our Community
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Metmma Pharmacy is proud to serve as a trusted health partner for
-                local families. From prescription support to health advice, our
-                team is here to help every step of the way.
+                Metmma Pharmacy is proud to serve as a trusted health partner
+                for local families. From prescription support to health advice,
+                our team is here to help every step of the way.
               </p>
               <Button
                 size="lg"
@@ -184,11 +205,14 @@ const Index = () => {
             Ready to Visit Metmma Pharmacy?
           </h2>
           <p className="mb-8 opacity-90">
-            We’re here every day to serve you. Drop by for prescriptions, advice,
-            or a friendly chat about your health.
+            We're here every day to serve you. Drop by for prescriptions,
+            advice, or a friendly chat about your health.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
+            <Button
+              size="lg"
+              className="bg-white text-primary hover:bg-gray-100"
+            >
               <MapPinHouse className="w-5 h-5 mr-2" />
               Find Us
             </Button>
@@ -202,7 +226,7 @@ const Index = () => {
               }
               variant="outline"
               size="lg"
-              className="border-white text-primary hover:bg-white hover:bg-transparent hover:text-white"
+              className="border-white text-white hover:bg-white hover:text-primary"
             >
               <MessageCircle className="w-5 h-5 mr-2" />
               Message Us
@@ -210,6 +234,25 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Fullscreen background image section */}
+      <div
+        className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
+        style={{ backgroundImage: `url(${pharmacyImage})` }}
+      >
+        {/* Content overlay with semi-transparent background */}
+        <div className="bg-background/90 backdrop-blur-sm p-8 rounded-lg text-center max-w-md mx-4 shadow-lg">
+          <h1 className="text-3xl font-bold mb-4">Metmma Pharmacy</h1>
+          <p className="text-muted-foreground mb-6">
+            Your trusted pharmacy providing comprehensive healthcare services.
+          </p>
+          <div className="space-y-2 text-sm">
+            <p>📞 (+265) 994 399 885</p>
+            <p>📍 Nanjiri, P/Bag 323</p>
+            <p>✉️ metmmapharmacy@gmail.com</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

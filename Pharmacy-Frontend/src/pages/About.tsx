@@ -1,5 +1,6 @@
 import { Users, Heart, Stethoscope, Award } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const About = () => {
   const values = [
@@ -38,8 +39,8 @@ const About = () => {
             About Metmma Pharmacy
           </h1>
           <p className="text-lg text-muted-foreground">
-            Your trusted partner in health and wellness, providing compassionate,
-            reliable, and professional care in our community.
+            Your trusted partner in health and wellness, providing
+            compassionate, reliable, and professional care in our community.
           </p>
         </div>
       </section>
@@ -59,7 +60,8 @@ const About = () => {
               From humble beginnings to a fully stocked, modern pharmacy, we
               continue to grow while maintaining our motto:
               <span className="font-semibold text-trust">
-                {" "} "To serve customers with courtesy."
+                {" "}
+                "To serve customers with courtesy."
               </span>
             </p>
           </div>
@@ -72,7 +74,9 @@ const About = () => {
       {/* Values */}
       <section className="py-16 bg-muted">
         <div className="container text-center px-4">
-          <h2 className="text-3xl font-bold text-trust mb-12">Our Core Values</h2>
+          <h2 className="text-3xl font-bold text-trust mb-12">
+            Our Core Values
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((val, i) => (
               <Card
