@@ -4,8 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useNewsletter } from "@/hooks/use-newsletter";
 
 const Contact = () => {
+  const { email, setEmail, subscribe, isLoading } = useNewsletter();
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    subscribe(email);
+  };
+
   const contactInfo = [
     {
       icon: Phone,
@@ -127,14 +135,10 @@ const Contact = () => {
             <Card className="border-0 shadow-card">
               <CardContent className="p-6">
                 <form className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" placeholder="John" />
-                    </div>
-                    <div>
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" placeholder="Smith" />
+                      <Label htmlFor="name">Name</Label>
+                      <Input id="name" placeholder="John Wayne" />
                     </div>
                   </div>
                   <div>
@@ -175,16 +179,24 @@ const Contact = () => {
             Subscribe to our newsletter for updates, tips, and advice from our
             pharmacists.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="flex-1 px-4 py-3 rounded-lg text-foreground bg-background border-0 focus:ring-2 focus:ring-accent"
+              required
+              disabled={isLoading}
             />
-            <Button className="bg-accent hover:bg-accent/90 px-8">
-              Subscribe
+            <Button
+              type="submit"
+              className="bg-accent hover:bg-accent/90 px-8"
+              disabled={isLoading}
+            >
+              {isLoading ? "Subscribing..." : "Subscribe"}
             </Button>
-          </div>
+          </form>
           <p className="text-xs mt-4 opacity-75">
             We respect your privacy. Unsubscribe anytime.
           </p>
