@@ -1,25 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, MessageCircle} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      // Trigger when scrolling past the hero section (approximately 80vh)
+      setIsScrolled(scrollTop > window.innerHeight * 0.8);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="bg-background border-b border-border sticky top-0 z-50">
+    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-background/95 backdrop-blur-sm border-b border-border/50' 
+        : 'bg-transparent border-b border-transparent'
+    }`}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="w-12 h-12 flex items-center justify-center">
-              {/* Relative path to logo -- in Public folder  */}
-              <img src="../Public/logo-color.svg" alt="Metmma Pharmacy logo" />
+              <img 
+                src="/logo-color.svg" 
+                alt="Metmma Pharmacy logo" 
+                className="w-10 h-10"
+              />
             </div>
-            <span className="text-xl font-bold text-trust">Metmma Pharmacy</span>
+            <span className="text-xl font-bold text-trust">
+              Metmma Pharmacy
+            </span>
           </div>
 
           {/* Desktop Navigation */}
@@ -43,7 +64,7 @@ const Navbar = () => {
             {/* Opens whatsapp with a preset message */}
             <Button 
               size="sm" 
-              className="hidden sm:flex"
+              className="hidden sm:flex bg-primary hover:bg-primary/90 text-white"
               type="button"
               onClick={() =>
                 window.open(
@@ -58,7 +79,7 @@ const Navbar = () => {
             {/* Mobile menu button */}
             <button
               onClick={toggleMenu}
-              className="md:hidden p-2 rounded-md hover:bg-muted"
+              className="md:hidden p-2 rounded-md hover:bg-muted transition-colors"
             >
               {isMenuOpen ? (
                 <X className="w-5 h-5" />

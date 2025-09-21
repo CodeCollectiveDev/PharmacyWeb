@@ -9,12 +9,12 @@ import {
   Pill,
   Stethoscope,
   UserCheck,
+  Play,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { NavLink } from "react-router-dom";
-import BannerCarousal from "@/components/ui/bannerCarousal";
 
 const Index = () => {
   const services = [
@@ -52,206 +52,251 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="bg-muted/40 border-b">
-        <div className="container mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl font-bold text-trust">
-                Your Local, Reliable Pharmacy
-              </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                At Metmma Pharmacy, we're here to provide accessible and caring
-                service for every member of our community. Our focus is simple —
-                safe medicines, helpful advice, and personal care.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white"
-                >
-                  <MapPinHouse className="w-5 h-5 mr-2" />
-                  Visit Us
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="lg"
-                  onClick={() =>
-                    window.open(
-                      "https://wa.me/265994399885?text=Hello%20Metmma%20Pharmacy,%20I%20need%20assistance",
-                      "_blank"
-                    )
-                  }
-                  className="flex items-center hover:bg-transparent hover:text-primary"
-                >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Message Us
-                </Button>
-              </div>
-
-              <div className="flex items-center space-x-6 text-sm text-muted-foreground pt-4">
-                <div className="flex items-center space-x-2">
-                  <Clock className="w-4 h-4" />
-                  <span>Open Daily</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Shield className="w-4 h-4" />
-                  <span>Licensed Pharmacist</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Heart className="w-4 h-4" />
-                  <span>Friendly Service</span>
-                </div>
-              </div>
-            </div>
-            <div className="hidden lg:block">
-              <BannerCarousal />
-            </div>
-          </div>
+      {/* Hero Section with Video Background */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Video Background for Desktop */}
+        <div className="absolute inset-0 hidden md:block">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source
+              src="/pharma-bg-video.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
-      </section>
 
-      {/* Stats */}
-      <section className="py-12 bg-white border-b">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-primary mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+        {/* Image Background for Mobile */}
+        <div 
+          className="absolute inset-0 md:hidden bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(/images/pharmacy-bg.jpg)` }}
+        >
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
-      </section>
 
-      {/* Services */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-trust mb-4">Our Services</h2>
-            <p className="text-muted-foreground">
-              We provide essential healthcare services tailored to your needs.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <Card
-                key={index}
-                className="shadow-sm hover:shadow-md transition p-4"
-              >
-                <CardHeader className="text-center">
-                  <service.icon className="w-8 h-8 text-primary mb-3 mx-auto" />
-                  <CardTitle className="text-lg">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center text-muted-foreground text-sm">
-                  {service.description}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="text-center mt-8">
-            <NavLink
-              to="/services"
-              className="text-primary hover:underline inline-flex items-center"
-            >
-              View All Services <ArrowRight className="w-4 h-4 ml-2" />
-            </NavLink>
-          </div>
-        </div>
-      </section>
-
-      {/* About */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div className="space-y-6">
-              <Badge className="bg-primary/10 text-primary">About Us</Badge>
-              <h2 className="text-3xl font-bold text-trust">
-                Caring for Our Community
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Metmma Pharmacy is proud to serve as a trusted health partner
-                for local families. From prescription support to health advice,
-                our team is here to help every step of the way.
-              </p>
-              <Button
-                size="lg"
-                variant="outline"
-                className="hover:bg-primary hover:text-white"
-              >
-                Learn More <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <Users className="w-10 h-10 text-primary mb-3" />
-              <p className="text-muted-foreground">
-                A licensed pharmacist with years of experience, offering
-                personalized care and attention.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 bg-primary/90 text-white">
-        <div className="container mx-auto px-4 text-center max-w-2xl">
-          <h2 className="text-3xl font-bold mb-4">
-            Ready to Visit Metmma Pharmacy?
-          </h2>
-          <p className="mb-8 opacity-90">
-            We're here every day to serve you. Drop by for prescriptions,
-            advice, or a friendly chat about your health.
+        {/* Hero Content */}
+        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight animate-fade-in-up font-display tracking-tight">
+            Help families heal.
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 leading-relaxed opacity-90 animate-fade-in-up font-light" style={{ animationDelay: '0.2s' }}>
+            Join us in providing accessible healthcare and compassionate care to children and families in our community.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             <Button
               size="lg"
-              className="bg-white text-primary hover:bg-gray-100"
+              className="bg-white text-black hover:bg-gray-100 text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105 hover:shadow-glow"
             >
               <MapPinHouse className="w-5 h-5 mr-2" />
-              Find Us
+              Visit Our Pharmacy
             </Button>
             <Button
               type="button"
+              variant="outline"
+              size="lg"
               onClick={() =>
                 window.open(
                   "https://wa.me/265994399885?text=Hello%20Metmma%20Pharmacy,%20I%20need%20assistance",
                   "_blank"
                 )
               }
-              variant="outline"
-              size="lg"
-              className="border-white text-white hover:bg-white hover:text-primary"
+              className="border-white text-white hover:bg-white hover:text-black text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105"
             >
               <MessageCircle className="w-5 h-5 mr-2" />
-              Message Us
+              Get Help Now
             </Button>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce" style={{ animationDelay: '0.6s' }}>
+          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
 
-      {/* Fullscreen background image section */}
-      <div
-        className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
-        style={{ backgroundImage: `url(/images/pharmacy-bg.jpg)` }}
-      >
-        {/* Content overlay with semi-transparent background */}
-        <div className="bg-background/90 backdrop-blur-sm p-8 rounded-lg text-center max-w-md mx-4 shadow-lg">
-          <h1 className="text-3xl font-bold mb-4">Metmma Pharmacy</h1>
-          <p className="text-muted-foreground mb-6">
-            Your trusted pharmacy providing comprehensive healthcare services.
-          </p>
-          <div className="space-y-2 text-sm">
-            <p>📞 (+265) 994 399 885</p>
-            <p>📍 Nanjiri, P/Bag 323</p>
-            <p>✉️ metmmapharmacy@gmail.com</p>
+      {/* Introduction Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 animate-fade-in-up font-display tracking-tight">
+              Hi, we are Metmma Pharmacy
+            </h2>
+            <p className="text-xl text-gray-600 leading-relaxed mb-8 animate-fade-in-up font-light" style={{ animationDelay: '0.2s' }}>
+              We are a trusted community pharmacy dedicated to providing accessible healthcare and compassionate service to families in our neighborhood. With your support, we ensure that every person has access to the quality healthcare they deserve.
+            </p>
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              <NavLink
+                to="/about"
+                className="inline-flex items-center text-primary hover:text-primary/80 font-semibold text-lg transition-all duration-300 hover:scale-105 group"
+              >
+                Who We Are 
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+              </NavLink>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* How We Work Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-6 text-gray-900 animate-fade-in-up font-display tracking-tight">How We Work</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up font-light" style={{ animationDelay: '0.2s' }}>
+              Our work reflects compassionate care by ensuring quality medications and health services are accessible to all, while building lasting relationships with our community.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <div 
+                key={index} 
+                className="text-center group animate-fade-in-up" 
+                style={{ animationDelay: `${0.4 + index * 0.1}s` }}
+              >
+                <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-500 group-hover:-translate-y-3 group-hover:shadow-glow">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
+                    <service.icon className="w-8 h-8 text-primary transition-all duration-300 group-hover:scale-110" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-4 text-gray-900 font-semibold">{service.title}</h3>
+                  <p className="text-gray-600 leading-relaxed font-light">{service.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Story Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8 animate-slide-in-left">
+              <div>
+                <Badge className="bg-primary/10 text-primary mb-4 font-medium">Patient Story</Badge>
+                <h2 className="text-4xl font-bold mb-6 text-gray-900 font-display tracking-tight">
+                  Maria's Story of Recovery
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed mb-6 font-light">
+                  "When my child fell ill, I was worried about finding the right medication and care. The team at Metmma Pharmacy not only provided the medicines we needed but also took the time to explain everything and check on our progress."
+                </p>
+                <p className="text-lg text-gray-600 leading-relaxed font-light">
+                  "Their compassionate service made all the difference in our healing journey. Now my family is healthy and we know we have a trusted partner in our healthcare."
+                </p>
+              </div>
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-glow group"
+              >
+                <Play className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:scale-110" />
+                Watch Her Story
+              </Button>
+            </div>
+            <div className="relative animate-slide-in-right">
+              <div className="aspect-video bg-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group cursor-pointer">
+                <img 
+                  src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Happy family at pharmacy"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center transition-all duration-300 group-hover:bg-black/30">
+                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-white">
+                    <Play className="w-6 h-6 text-gray-900 ml-1 transition-all duration-300 group-hover:scale-110" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 bg-primary text-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div 
+                key={index} 
+                className="text-center animate-scale-in" 
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="text-4xl md:text-5xl font-bold mb-2 font-display">
+                  {stat.number}
+                </div>
+                <div className="text-lg opacity-90 font-light">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gray-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up font-display tracking-tight">
+              Ready to Experience Quality Healthcare?
+            </h2>
+            <p className="text-xl mb-10 opacity-90 leading-relaxed animate-fade-in-up font-light" style={{ animationDelay: '0.2s' }}>
+              We're here every day to serve you and your family. Visit us for prescriptions, health consultations, or simply to learn more about maintaining your wellness.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              <Button
+                size="lg"
+                className="bg-white text-gray-900 hover:bg-gray-100 text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105 hover:shadow-glow"
+              >
+                <MapPinHouse className="w-5 h-5 mr-2" />
+                Visit Our Location
+              </Button>
+              <Button
+                type="button"
+                onClick={() =>
+                  window.open(
+                    "https://wa.me/265994399885?text=Hello%20Metmma%20Pharmacy,%20I%20need%20assistance",
+                    "_blank"
+                  )
+                }
+                variant="outline"
+                size="lg"
+                className="border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105"
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Get Help Today
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Info Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <h3 className="text-2xl font-bold mb-6 text-gray-900 animate-fade-in-up font-display">Visit Us Today</h3>
+            <div className="space-y-4 text-lg text-gray-600">
+              <p className="flex items-center justify-center animate-fade-in-up font-medium" style={{ animationDelay: '0.1s' }}>
+                <MessageCircle className="w-5 h-5 mr-3 text-primary" />
+                (+265) 994 399 885
+              </p>
+              <p className="flex items-center justify-center animate-fade-in-up font-medium" style={{ animationDelay: '0.2s' }}>
+                <MapPinHouse className="w-5 h-5 mr-3 text-primary" />
+                Nanjiri, P/Bag 323
+              </p>
+              <p className="flex items-center justify-center animate-fade-in-up font-medium" style={{ animationDelay: '0.3s' }}>
+                <Heart className="w-5 h-5 mr-3 text-primary" />
+                metmmapharmacy@gmail.com
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
