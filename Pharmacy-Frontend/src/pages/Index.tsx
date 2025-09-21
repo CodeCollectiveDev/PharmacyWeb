@@ -15,7 +15,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { NavLink } from "react-router-dom";
 import BannerCarousal from "@/components/ui/bannerCarousal";
-import pharmacyimage from "@/public/images/pharmacy-bg.jpg";
 
 const Index = () => {
   const services = [
@@ -238,7 +237,7 @@ const Index = () => {
       {/* Fullscreen background image section */}
       <div
         className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
-        style={{ backgroundImage: `url(${pharmacyImage})` }}
+        style={{ backgroundImage: `url(/images/pharmacy-bg.jpg)` }}
       >
         {/* Content overlay with semi-transparent background */}
         <div className="bg-background/90 backdrop-blur-sm p-8 rounded-lg text-center max-w-md mx-4 shadow-lg">
