@@ -1,7 +1,7 @@
 /***************************************************************************************
-    This script is for fowarding emails from frontend conctact form to the pharmacy mail
+   rmacy mail
     by utilising Resend (third party tool) through their module package
-
+ This script is for fowarding emails from frontend conctact form to the pha
     ----------------------------------------------------------------------
     API EndPoint ==> api/send-email
     
@@ -14,55 +14,59 @@
     TO RUN THIS SERVER -- npm start
 ***************************************************************************************/
 
-// Importing dependencies  
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import { Resend } from 'resend';
+// Importing dependencies
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import dotenv from "dotenv";
+import { Resend } from "resend";
 
 // Injecting environment variables
 dotenv.config();
 const port = 3000; // Port number
 
-const app = express(); 
+const app = express();
 
 // CORS middleware to allow frontend requests
-app.use(cors({
-  origin: [
-    'http://localhost:5173', 
-    'http://127.0.0.1:5173',
-    'http://localhost:8080', 
-    'http://127.0.0.1:8080'
-  ], // Vite dev server URLs
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type']
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://127.0.0.1:5173",
+      "http://localhost:8080",
+      "http://127.0.0.1:8080",
+    ], // Vite dev server URLs
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
 
 app.use(bodyParser.json()); // Middleware to parse all request and responses to json files
 
 const resend = new Resend(process.env.RESEND_API_KEY); // Constructing resend with its API key
 
-
 // Routes
 
 // Test route to check if server is running
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'Server is running!', timestamp: new Date().toISOString() });
+app.get("/api/test", (req, res) => {
+  res.json({
+    message: "Server is running!",
+    timestamp: new Date().toISOString(),
+  });
 });
 
-// Post route -- to send email data to Resend 
-app.post('/api/send-email', async (req, res) => {
+// Post route -- to send email data to Resend
+app.post("/api/send-email", async (req, res) => {
   const { name, email, phone, subject, message } = req.body;
 
   // Wrapped in Try catch to catch errors faster
   try {
     await resend.emails.send({
-        // Email contents
-        from: "onboarding@resend.dev", // Verified sender email (in Resend)
-        to: "codecollective.dev@gmail.com", // Verified Reciever (in Resend)
-        subject: `Contact form from ${name}`, // Subject
-        html: ` 
+      // Email contents
+      from: "onboarding@resend.dev", // Verified sender email (in Resend)
+      to: "codecollective.dev@gmail.com", // Verified Reciever (in Resend)
+      subject: `Contact form from ${name}`, // Subject
+      html: ` 
             <div style="font-family: Arial, sans-serif; font-size: 16px; color: #333; line-height: 1.6; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
             <h2 style="text-align: center; color: #1a1a1a; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;">New Form Submission</h2>
             <div style="background-color: #f9f9f9; padding: 15px; border-radius: 6px;">
@@ -75,36 +79,39 @@ app.post('/api/send-email', async (req, res) => {
                 </div>
             </div>
             </div>
-            `, // Email body content 
-        });
-        res.status(200).json({ success: true, message: "Email sent successfully!" });
+            `, // Email body content
+    });
+    res
+      .status(200)
+      .json({ success: true, message: "Email sent successfully!" });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 });
 
 // Newsletter subscription endpoint
-app.post('/api/newsletter-subscribe', async (req, res) => {
+app.post("/api/newsletter-subscribe", async (req, res) => {
   const { email } = req.body;
 
   // Basic validation
-  if (!email || !email.includes('@')) {
-    return res.status(400).json({ 
-      success: false, 
-      message: "Please provide a valid email address" 
+  if (!email || !email.includes("@")) {
+    return res.status(400).json({
+      success: false,
+      message: "Please provide a valid email address",
     });
   }
 
   try {
     // Check if RESEND_API_KEY exists
     if (!process.env.RESEND_API_KEY) {
-      console.log('⚠️  No RESEND_API_KEY found. Simulating email sending...');
+      console.log("⚠️  No RESEND_API_KEY found. Simulating email sending...");
       console.log(`📧 Would send welcome email to: ${email}`);
       console.log(`📧 Would notify pharmacy about new subscription: ${email}`);
-      
-      res.status(200).json({ 
-        success: true, 
-        message: "Successfully subscribed to newsletter! (Demo mode - check server console for logs)" 
+
+      res.status(200).json({
+        success: true,
+        message:
+          "Successfully subscribed to newsletter! (Demo mode - check server console for logs)",
       });
       return;
     }
@@ -144,15 +151,15 @@ app.post('/api/newsletter-subscribe', async (req, res) => {
       `,
     });
 
-    res.status(200).json({ 
-      success: true, 
-      message: "Successfully subscribed to newsletter!" 
+    res.status(200).json({
+      success: true,
+      message: "Successfully subscribed to newsletter!",
     });
   } catch (error) {
-    console.error('Newsletter subscription error:', error);
-    res.status(500).json({ 
-      success: false, 
-      message: "Failed to subscribe. Please try again later." 
+    console.error("Newsletter subscription error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to subscribe. Please try again later.",
     });
   }
 });
