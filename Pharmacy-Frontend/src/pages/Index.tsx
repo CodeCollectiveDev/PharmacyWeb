@@ -15,8 +15,29 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { NavLink } from "react-router-dom";
+import { toast } from "sonner";
+import { useSEO } from "@/hooks/use-seo-tags";
+import { defaultSEO } from "@/lib/seo";
 
 const Index = () => {
+  // Set SEO tags for homepage
+  useSEO(defaultSEO);
+  const handleContactClick = () => {
+    try {
+      // Replace with your actual API call
+      window.open(
+        "https://wa.me/265994399885?text=Hello%20Metmma%20Pharmacy,%20I%20need%20assistance",
+        "_blank"
+      );
+      toast.success("Opening WhatsApp", {
+        description: "Chat window is opening...",
+      });
+    } catch {
+      toast.error("Error", {
+        description: "Failed to open WhatsApp. Please try again.",
+      });
+    }
+  };
   const services = [
     {
       icon: Pill,
@@ -99,12 +120,7 @@ const Index = () => {
               type="button"
               variant="outline"
               size="lg"
-              onClick={() =>
-                window.open(
-                  "https://wa.me/265994399885?text=Hello%20Metmma%20Pharmacy,%20I%20need%20assistance",
-                  "_blank"
-                )
-              }
+              onClick={handleContactClick}
               className="border-white text-white hover:bg-white hover:text-black text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105"
             >
               <MessageCircle className="w-5 h-5 mr-2" />
@@ -154,19 +170,29 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <div 
                 key={index} 
                 className="text-center group animate-fade-in-up" 
                 style={{ animationDelay: `${0.4 + index * 0.1}s` }}
               >
-                <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-500 group-hover:-translate-y-3 group-hover:shadow-glow">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
-                    <service.icon className="w-8 h-8 text-primary transition-all duration-300 group-hover:scale-110" />
+                <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-4 border border-gray-100/50">
+                  <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:scale-125 bg-gradient-to-br ${
+                    index === 0 ? 'from-green-100 to-green-50' :
+                    index === 1 ? 'from-green-100 to-green-50' :
+                    index === 2 ? 'from-emerald-100 to-emerald-50' :
+                    'from-teal-100 to-teal-50'
+                  }`}>
+                    <service.icon className={`w-8 h-8 transition-all duration-300 group-hover:scale-110 ${
+                      index === 0 ? 'text-green-600' :
+                      index === 1 ? 'text-green-600' :
+                      index === 2 ? 'text-emerald-600' :
+                      'text-teal-600'
+                    }`} />
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-gray-900 font-semibold">{service.title}</h3>
-                  <p className="text-gray-600 leading-relaxed font-light">{service.description}</p>
+                  <h3 className="text-lg font-bold mb-3 text-gray-900 group-hover:text-green-600 transition-colors duration-300">{service.title}</h3>
+                  <p className="text-gray-600 leading-relaxed font-light text-sm">{service.description}</p>
                 </div>
               </div>
             ))}
@@ -218,19 +244,23 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gradient-to-r from-green-600 to-green-500 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full -mr-48 -mt-48"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full -ml-48 -mb-48"></div>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center animate-scale-in" 
+                className="text-center animate-scale-in group" 
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="text-4xl md:text-5xl font-bold mb-2 font-display">
+                <div className="text-5xl md:text-6xl font-bold mb-3 font-display bg-gradient-to-br from-white to-blue-100 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
                   {stat.number}
                 </div>
-                <div className="text-lg opacity-90 font-light">{stat.label}</div>
+                <div className="text-base md:text-lg opacity-90 font-medium group-hover:opacity-100 transition-opacity duration-300">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -238,19 +268,23 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-900 text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-green-500 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-emerald-500 rounded-full blur-3xl"></div>
+        </div>
+        <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up font-display tracking-tight">
               Ready to Experience Quality Healthcare?
             </h2>
-            <p className="text-xl mb-10 opacity-90 leading-relaxed animate-fade-in-up font-light" style={{ animationDelay: '0.2s' }}>
+            <p className="text-lg md:text-xl mb-10 opacity-90 leading-relaxed animate-fade-in-up font-light" style={{ animationDelay: '0.2s' }}>
               We're here every day to serve you and your family. Visit us for prescriptions, health consultations, or simply to learn more about maintaining your wellness.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               <Button
                 size="lg"
-                className="bg-white text-gray-900 hover:bg-gray-100 text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105 hover:shadow-glow"
+                className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl shadow-lg"
               >
                 <MapPinHouse className="w-5 h-5 mr-2" />
                 Visit Our Location
@@ -265,7 +299,7 @@ const Index = () => {
                 }
                 variant="outline"
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105"
+                className="border-white text-white hover:bg-white/20 text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Get Help Today
