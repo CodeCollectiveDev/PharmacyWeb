@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="space-y-6 group">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300">
-                <img src="/logo-white.svg" alt="Metmma Pharmacy logo" className="w-8 h-8 drop-shadow" />
+                <img src="/metmmalogo.svg" alt="Metmma Pharmacy logo" className="w-8 h-8 drop-shadow" />
               </div>
               <div>
                 <h3 className="text-xl font-bold">Metmma</h3>

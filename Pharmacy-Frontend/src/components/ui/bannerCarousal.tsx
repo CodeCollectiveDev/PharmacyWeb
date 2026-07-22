@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const heroImages = [
-  "Public/images/pharmacy-shelves.jpg",
-  "Public/images/pharmacy-counter.jpg"
+  "/images/pharmacy-shelves.jpg",
+  "/images/pharmacy-bg.jpg"
 ];
 
 const BannerCarousal = () => {

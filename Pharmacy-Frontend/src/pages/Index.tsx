@@ -75,8 +75,8 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Hero Section with Video Background */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Video Background for Desktop */}
-        <div className="absolute inset-0 hidden md:block">
+        {/* Video Background */}
+        <div className="absolute inset-0">
           <video
             autoPlay
             muted
@@ -89,14 +89,6 @@ const Index = () => {
               type="video/mp4"
             />
           </video>
-          <div className="absolute inset-0 bg-black/40"></div>
-        </div>
-
-        {/* Image Background for Mobile */}
-        <div 
-          className="absolute inset-0 md:hidden bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(/images/pharmacy-bg.jpg)` }}
-        >
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
 

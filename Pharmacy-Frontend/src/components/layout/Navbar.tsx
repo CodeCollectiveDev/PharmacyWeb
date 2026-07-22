@@ -33,7 +33,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-3 group">
             <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300">
               <img 
-                src="/logo-color.svg" 
+                src="/metmmalogo.svg" 
                 alt="Metmma Pharmacy logo" 
                 className="w-8 h-8 drop-shadow"
               />
