@@ -45,6 +45,31 @@ const port = process.env.PORT || 3000; // Port number
 
 const app = express(); 
 
+const contactRateLimitWindowMs = 15 * 60 * 1000;
+const contactRateLimitMaxRequests = 5;
+const contactRequestsByIp = new Map();
+
+const getClientIp = (req) => req.ip || req.socket.remoteAddress || 'unknown';
+
+const contactRateLimiter = (req, res, next) => {
+  const now = Date.now();
+  const clientIp = getClientIp(req);
+  const recentRequests = (contactRequestsByIp.get(clientIp) || [])
+    .filter((timestamp) => now - timestamp < contactRateLimitWindowMs);
+
+  if (recentRequests.length >= contactRateLimitMaxRequests) {
+    res.set('Retry-After', String(Math.ceil(contactRateLimitWindowMs / 1000)));
+    return res.status(429).json({
+      success: false,
+      message: 'Too many submissions. Please wait a few minutes and try again.',
+    });
+  }
+
+  recentRequests.push(now);
+  contactRequestsByIp.set(clientIp, recentRequests);
+  return next();
+};
+
 // CORS middleware to allow frontend requests
 app.use(cors({
   origin: [
@@ -57,7 +82,19 @@ app.use(cors({
   allowedHeaders: ['Content-Type']
 }));
 
-app.use(bodyParser.json()); // Middleware to parse all request and responses to json files
+app.use(bodyParser.json({ limit: '20kb' })); // Bound public JSON payloads before route handling
+
+app.use((error, req, res, next) => {
+  if (error instanceof SyntaxError && error.status === 400 && error.type === 'entity.parse.failed') {
+    return res.status(400).json({ success: false, message: 'Request body must be valid JSON.' });
+  }
+
+  if (error.type === 'entity.too.large') {
+    return res.status(413).json({ success: false, message: 'Request body is too large.' });
+  }
+
+  return next(error);
+});
 
 const resend = new Resend(process.env.RESEND_API_KEY); // Constructing resend with its API key
 
@@ -71,33 +108,48 @@ app.get('/api/test', (req, res) => {
 
 // ======================= CONTACT FORM ENDPOINT =======================
 // Post route -- to send email data with database storage
-app.post('/api/send-email', async (req, res) => {
-  const { name, email, phone, subject, message } = req.body;
+app.post('/api/send-email', contactRateLimiter, async (req, res) => {
+  const { name, email, phone, subject, message } = req.body || {};
+  const trimmedName = typeof name === 'string' ? name.trim() : '';
+  const trimmedEmail = typeof email === 'string' ? email.trim() : '';
+  const trimmedPhone = typeof phone === 'string' ? phone.trim() : '';
+  const trimmedSubject = typeof subject === 'string' ? subject.trim() : '';
+  const trimmedMessage = typeof message === 'string' ? message.trim() : '';
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   // Validation
-  if (!name || !email || !subject || !message) {
+  if (
+    trimmedName.length < 2 ||
+    trimmedName.length > 100 ||
+    !emailPattern.test(trimmedEmail) ||
+    trimmedSubject.length < 2 ||
+    trimmedSubject.length > 200 ||
+    trimmedMessage.length < 10 ||
+    trimmedMessage.length > 5000 ||
+    (phone !== undefined && typeof phone !== 'string') ||
+    trimmedPhone.length > 40
+  ) {
     return res.status(400).json({ 
       success: false, 
-      message: "Missing required fields: name, email, subject, message" 
-    });
-  }
-
-  if (!email.includes('@')) {
-    return res.status(400).json({ 
-      success: false, 
-      message: "Invalid email address" 
+      message: "Please provide a valid name, email, subject, and message." 
     });
   }
 
   try {
     // Store inquiry in database
-    const inquiry = await addCustomerInquiry(name, email, phone || null, subject, message);
+    const inquiry = await addCustomerInquiry(
+      trimmedName,
+      trimmedEmail,
+      trimmedPhone || null,
+      trimmedSubject,
+      trimmedMessage
+    );
     console.log('✓ Inquiry stored:', inquiry.id);
 
     // Send confirmation email to customer using Nodemailer + Brevo
     try {
-      await sendInquiryConfirmation(email, name, inquiry.id);
-      await logEmail(email, 'inquiry_confirmation', 'We received your inquiry', inquiry.id);
+      await sendInquiryConfirmation(trimmedEmail, trimmedName, inquiry.id);
+      await logEmail(trimmedEmail, 'inquiry_confirmation', 'We received your inquiry', inquiry.id);
       console.log('✓ Confirmation email sent to customer');
     } catch (emailError) {
       console.error('Warning: Could not send customer confirmation email:', emailError.message);
@@ -106,8 +158,8 @@ app.post('/api/send-email', async (req, res) => {
 
     // Send notification to pharmacy
     try {
-      await sendInquiryNotification(name, email, phone || 'Not provided', subject, message, inquiry.id);
-      await logEmail(process.env.PHARMACY_EMAIL, 'inquiry_notification', `New inquiry: ${subject}`, inquiry.id);
+      await sendInquiryNotification(trimmedName, trimmedEmail, trimmedPhone || 'Not provided', trimmedSubject, trimmedMessage, inquiry.id);
+      await logEmail(process.env.PHARMACY_EMAIL, 'inquiry_notification', `New inquiry: ${trimmedSubject}`, inquiry.id);
       console.log('✓ Notification sent to pharmacy');
     } catch (emailError) {
       console.error('Warning: Could not send pharmacy notification:', emailError.message);
