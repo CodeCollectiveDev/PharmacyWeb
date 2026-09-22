@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, Send, Navigation } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -5,14 +6,111 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useNewsletter } from "@/hooks/use-newsletter";
+import { useLoading } from "@/hooks/use-loading";
+import { useToast } from "@/hooks/use-toast";
 import { businessDetails } from "@/lib/businessDetails";
+import { api } from "@/lib/api";
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}
+
+type ContactFormErrors = Partial<Record<keyof ContactFormData, string>>;
+
+const initialContactForm: ContactFormData = {
+  name: "",
+  email: "",
+  phone: "",
+  subject: "",
+  message: "",
+};
 
 const Contact = () => {
   const { email, setEmail, subscribe, isLoading } = useNewsletter();
+  const { startLoading, stopLoading } = useLoading();
+  const { toast } = useToast();
+  const [contactForm, setContactForm] = useState(initialContactForm);
+  const [formErrors, setFormErrors] = useState<ContactFormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     subscribe(email);
+  };
+
+  const validateContactForm = (data: ContactFormData): ContactFormErrors => {
+    const errors: ContactFormErrors = {};
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (data.name.trim().length < 2) errors.name = "Enter your name.";
+    if (!emailPattern.test(data.email.trim())) {
+      errors.email = "Enter a valid email address.";
+    }
+    if (data.subject.trim().length < 2) errors.subject = "Enter a subject.";
+    if (data.message.trim().length < 10) {
+      errors.message = "Message must be at least 10 characters.";
+    }
+
+    return errors;
+  };
+
+  const handleContactChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setContactForm((current) => ({ ...current, [id]: value }));
+    setFormErrors((current) => ({ ...current, [id]: undefined }));
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const errors = validateContactForm(contactForm);
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length > 0) {
+      toast({
+        title: "Check your message",
+        description: "Please correct the highlighted fields before sending.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    startLoading("Sending your message...");
+
+    try {
+      await api.sendContactForm({
+        ...contactForm,
+        name: contactForm.name.trim(),
+        email: contactForm.email.trim(),
+        phone: contactForm.phone.trim(),
+        subject: contactForm.subject.trim(),
+        message: contactForm.message.trim(),
+      });
+      toast({
+        title: "Message sent",
+        description: "Thank you for contacting us. We will get back to you soon.",
+      });
+      setContactForm(initialContactForm);
+      setFormErrors({});
+    } catch (error) {
+      toast({
+        title: "Unable to send message",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Please try again or contact the pharmacy directly.",
+        variant: "destructive",
+      });
+    } finally {
+      stopLoading();
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -170,18 +268,28 @@ const Contact = () => {
               Send Us a Message
             </h2>
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100/50">
-              <form className="space-y-5" aria-label="Contact form">
+              <form
+                className="space-y-5"
+                aria-label="Contact form"
+                onSubmit={handleContactSubmit}
+                noValidate
+              >
                 <div>
                   <Label htmlFor="name" className="text-gray-700 font-semibold text-sm">
                     Name <span className="text-red-500" aria-label="required">*</span>
                   </Label>
                   <Input 
                     id="name" 
+                    value={contactForm.name}
+                    onChange={handleContactChange}
                     placeholder="John Wayne" 
                     required
                     aria-required="true"
+                    aria-invalid={Boolean(formErrors.name)}
+                    aria-describedby={formErrors.name ? "name-error" : undefined}
                     className="mt-2 border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none rounded-lg transition-all" 
                   />
+                  {formErrors.name && <p id="name-error" className="mt-1 text-sm text-red-600">{formErrors.name}</p>}
                 </div>
                 <div>
                   <Label htmlFor="email" className="text-gray-700 font-semibold text-sm">
@@ -190,17 +298,24 @@ const Contact = () => {
                   <Input 
                     id="email" 
                     type="email" 
+                    value={contactForm.email}
+                    onChange={handleContactChange}
                     placeholder="email@example.com" 
                     required
                     aria-required="true"
+                    aria-invalid={Boolean(formErrors.email)}
+                    aria-describedby={formErrors.email ? "email-error" : undefined}
                     className="mt-2 border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none rounded-lg transition-all" 
                   />
+                  {formErrors.email && <p id="email-error" className="mt-1 text-sm text-red-600">{formErrors.email}</p>}
                 </div>
                 <div>
                   <Label htmlFor="phone" className="text-gray-700 font-semibold text-sm">Phone</Label>
                   <Input 
                     id="phone" 
                     type="tel" 
+                    value={contactForm.phone}
+                    onChange={handleContactChange}
                     placeholder="(265) 987-654-321" 
                     className="mt-2 border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none rounded-lg transition-all" 
                   />
@@ -211,11 +326,16 @@ const Contact = () => {
                   </Label>
                   <Input 
                     id="subject" 
+                    value={contactForm.subject}
+                    onChange={handleContactChange}
                     placeholder="How can we help?" 
                     required
                     aria-required="true"
+                    aria-invalid={Boolean(formErrors.subject)}
+                    aria-describedby={formErrors.subject ? "subject-error" : undefined}
                     className="mt-2 border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none rounded-lg transition-all" 
                   />
+                  {formErrors.subject && <p id="subject-error" className="mt-1 text-sm text-red-600">{formErrors.subject}</p>}
                 </div>
                 <div>
                   <Label htmlFor="message" className="text-gray-700 font-semibold text-sm">
@@ -223,20 +343,27 @@ const Contact = () => {
                   </Label>
                   <Textarea
                     id="message"
+                    value={contactForm.message}
+                    onChange={handleContactChange}
                     rows={5}
                     placeholder="Please provide details about your inquiry..."
                     required
                     aria-required="true"
+                    aria-invalid={Boolean(formErrors.message)}
+                    aria-describedby={formErrors.message ? "message-error" : undefined}
                     className="mt-2 border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none rounded-lg transition-all"
                   />
+                  {formErrors.message && <p id="message-error" className="mt-1 text-sm text-red-600">{formErrors.message}</p>}
                 </div>
                 <Button 
                   type="submit" 
                   size="lg" 
                   className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                   aria-label="Send message"
+                  disabled={isSubmitting}
                 >
-                  <Send className="w-4 h-4 mr-2" /> Send Message
+                  <Send className="w-4 h-4 mr-2" />
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </div>
