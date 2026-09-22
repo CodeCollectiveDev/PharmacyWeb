@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useNewsletter } from "@/hooks/use-newsletter";
+import { businessDetails } from "@/lib/businessDetails";
 
 const Contact = () => {
   const { email, setEmail, subscribe, isLoading } = useNewsletter();
@@ -18,7 +19,8 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: ["265 994 399 885"],
+      details: [businessDetails.phoneDisplay],
+      links: [businessDetails.phoneHref],
       description: "Call us for prescriptions, questions, or emergencies",
       color: "from-blue-100 to-blue-50",
       textColor: "text-blue-600",
@@ -26,7 +28,11 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      details: ["info@metmmapharmacy.com", "prescriptions@metmmapharmacy.com"],
+      details: [businessDetails.email, businessDetails.prescriptionEmail],
+      links: [
+        `mailto:${businessDetails.email}`,
+        `mailto:${businessDetails.prescriptionEmail}`,
+      ],
       description:
         "Email us for non-urgent inquiries and prescription transfers",
       color: "from-green-100 to-green-50",
@@ -35,17 +41,21 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Location",
-      details: ["Nanjiri", "along M1, Lilongwe", "Malawi"],
+      details: [businessDetails.visitingAddress],
+      links: [businessDetails.mapUrl],
       description:
-        "Convenient alongside the road location with parking available",
+        "Convenient roadside location with parking available",
       color: "from-purple-100 to-purple-50",
       textColor: "text-purple-600",
     },
     {
       icon: Clock,
-      title: "Hours",
-      details: ["Mon-Sat: 8:00 AM - 5:00 PM", "Sun & Holidays: 8:00 AM - 2:00 PM"],
-      description: "Extended hours to serve you better",
+      title: "Opening Hours",
+      details: [
+        businessDetails.hours.weekdayAndSaturday,
+        businessDetails.hours.sunday,
+      ],
+      description: businessDetails.hours.note,
       color: "from-orange-100 to-orange-50",
       textColor: "text-orange-600",
     },
@@ -85,9 +95,21 @@ const Contact = () => {
               {info.details ? (
                 <div className="space-y-1 mb-4 text-center">
                   {info.details.map((d, i) => (
-                    <p key={i} className="text-gray-900 font-medium text-sm">
-                      {d}
-                    </p>
+                    info.links?.[i] ? (
+                      <a
+                        key={i}
+                        href={info.links[i]}
+                        target={info.title === "Location" ? "_blank" : undefined}
+                        rel={info.title === "Location" ? "noreferrer" : undefined}
+                        className="block text-gray-900 font-medium text-sm hover:text-primary hover:underline"
+                      >
+                        {d}
+                      </a>
+                    ) : (
+                      <p key={i} className="text-gray-900 font-medium text-sm">
+                        {d}
+                      </p>
+                    )
                   ))}
                 </div>
               ) : null}

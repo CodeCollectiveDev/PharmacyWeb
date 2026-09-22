@@ -1,5 +1,6 @@
 import { Heart, Phone, MapPin, Clock, Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { businessDetails } from "@/lib/businessDetails";
 
 const Footer = () => {
   return (
@@ -22,7 +23,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-gray-400 leading-relaxed text-sm">
-              Your trusted community pharmacy providing compassionate healthcare services and quality medications to families.
+              Contact Metmma Pharmacy for medication and health service inquiries.
             </p>
             <div className="flex items-center space-x-2 text-green-300 group-hover:text-green-200 transition-colors duration-300">
               <Heart className="w-5 h-5" />
@@ -62,25 +63,32 @@ const Footer = () => {
                 <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center group-hover/item:bg-green-500/40 transition-colors duration-300">
                   <Phone className="w-5 h-5 text-green-300" />
                 </div>
-                <a href="tel:+265994399885" className="text-gray-400 hover:text-green-300 transition-colors duration-300 text-sm">
-                  (+265) 994 399 885
+                <a href={businessDetails.phoneHref} className="text-gray-400 hover:text-green-300 transition-colors duration-300 text-sm">
+                  {businessDetails.phoneDisplay}
                 </a>
               </li>
               <li className="flex items-center space-x-3 group/item">
                 <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center group-hover/item:bg-green-500/40 transition-colors duration-300">
                   <MapPin className="w-5 h-5 text-green-300" />
                 </div>
-                <span className="text-gray-400 text-sm">Nanjiri, P/Bag 323</span>
+                <a
+                  href={businessDetails.mapUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-gray-400 hover:text-green-300 transition-colors duration-300 text-sm"
+                >
+                  {businessDetails.visitingAddress}
+                </a>
               </li>
               <li className="flex items-center space-x-3 group/item">
                 <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center group-hover/item:bg-green-500/40 transition-colors duration-300">
                   <Mail className="w-5 h-5 text-green-300" />
                 </div>
                 <a
-                  href="mailto:metmmapharmacy@gmail.com"
+                  href={`mailto:${businessDetails.email}`}
                   className="text-gray-400 hover:text-green-300 transition-colors duration-300 text-sm truncate"
                 >
-                  metmmapharmacy@gmail.com
+                  {businessDetails.email}
                 </a>
               </li>
             </ul>
@@ -93,17 +101,18 @@ const Footer = () => {
               <div className="flex items-start space-x-3 bg-green-500/10 rounded-lg p-4 backdrop-blur-sm border border-green-500/20">
                 <Clock className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" />
                 <div className="text-gray-300 text-sm">
-                  <div className="font-semibold text-white">Mon-Sat</div>
-                  <div className="text-xs text-gray-400">8:00 AM - 5:00 PM</div>
-                  <div className="font-semibold text-white mt-2">Sun & Holidays</div>
-                  <div className="text-xs text-gray-400">8:00 AM - 2:00 PM</div>
+                  <div className="font-semibold text-white">{businessDetails.hours.weekdayAndSaturday.split(":")[0]}</div>
+                  <div className="text-xs text-gray-400">{businessDetails.hours.weekdayAndSaturday.split(": ")[1]}</div>
+                  <div className="font-semibold text-white mt-2">{businessDetails.hours.sunday.split(":")[0]}</div>
+                  <div className="text-xs text-gray-400">{businessDetails.hours.sunday.split(": ")[1]}</div>
+                  <div className="text-xs text-gray-400 mt-2">{businessDetails.hours.note.split("; ")[1]}</div>
                 </div>
               </div>
             </div>
             <Button
               onClick={() =>
                 window.open(
-                  "https://wa.me/265994399885?text=Hello%20Metmma%20Pharmacy,%20I%20need%20assistance",
+                  businessDetails.whatsappUrl,
                   "_blank"
                 )
               }

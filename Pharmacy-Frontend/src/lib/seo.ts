@@ -3,6 +3,8 @@
  * Manages dynamic meta tags and structured data for SEO
  */
 
+import { businessDetails } from "@/lib/businessDetails";
+
 export interface SEOConfig {
   title: string;
   description: string;
@@ -91,51 +93,55 @@ export const addStructuredData = (data: Record<string, any>) => {
 export const pharmacySchema = {
   "@context": "https://schema.org",
   "@type": "Pharmacy",
-  name: "Metmma Pharmacy",
-  description:
-    "Your trusted community pharmacy providing comprehensive pharmaceutical care and health services",
-  url: "https://metmmapharmacy.com",
-  telephone: "(+265) 994 399 885",
+  name: businessDetails.name,
+  description: "Medication and health service information from Metmma Pharmacy.",
+  url: businessDetails.website,
+  telephone: businessDetails.phoneDisplay,
+  email: businessDetails.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Nanjiri, P/Bag 323",
+    streetAddress: businessDetails.visitingAddress,
+    postOfficeBoxNumber: businessDetails.postalBox,
     addressLocality: "Lilongwe",
     addressCountry: "MW",
   },
-  image: "https://metmmapharmacy.com/logo.png",
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    opens: "08:00",
-    closes: "17:00",
-  },
-  sameAs: ["https://www.facebook.com/metmmapharmacy"],
+  image: `${businessDetails.website}/logo.png`,
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: businessDetails.hours.weekdayOpen,
+      closes: businessDetails.hours.weekdayClose,
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Sunday",
+      opens: businessDetails.hours.sundayOpen,
+      closes: businessDetails.hours.sundayClose,
+    },
+  ],
 };
 
 /**
  * Default SEO config for homepage
  */
 export const defaultSEO: SEOConfig = {
-  title: "Metmma Pharmacy - Your Trusted Neighborhood Pharmacy",
+  title: "Metmma Pharmacy",
   description:
-    "Metmma Pharmacy provides comprehensive pharmaceutical care, health screenings, and medication counseling. Serving our community with personalized healthcare solutions.",
+    "Contact Metmma Pharmacy for medication and health service information.",
   keywords: [
     "pharmacy",
     "prescription refills",
     "health screenings",
     "medication counseling",
-    "vaccinations",
     "community pharmacy",
     "pharmacy services",
     "Lilongwe pharmacy",
     "pharmacy near me",
-    "trusted pharmacy",
     "pharmacist consultation",
-    "prescription delivery",
-    "healthcare services",
     "Malawi pharmacy",
   ],
-  image: "https://metmmapharmacy.com/og-image.jpg",
+  image: `${businessDetails.website}/og-image.jpg`,
   author: "Metmma Pharmacy",
   type: "business",
 };
