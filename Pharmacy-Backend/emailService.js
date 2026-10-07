@@ -56,35 +56,6 @@ export const sendEmail = async (mailOptions) => {
 };
 
 /**
- * Send newsletter subscription confirmation
- */
-export const sendNewsletterConfirmation = async (email) => {
-  return sendEmail({
-    to: email,
-    subject: 'Welcome to Our Pharmacy Newsletter!',
-    html: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; background-color: #f9f9f9;">
-        <div style="background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-          <h2 style="color: #2c5f2d; margin-bottom: 20px;">Welcome to Our Pharmacy!</h2>
-          <p style="font-size: 16px; color: #333; line-height: 1.6;">
-            Thank you for subscribing to our newsletter. You'll now receive updates about:
-          </p>
-          <ul style="font-size: 16px; color: #555; line-height: 1.8;">
-            <li>New medicines and products</li>
-            <li>Health tips and wellness advice</li>
-            <li>Special offers and promotions</li>
-            <li>Important health alerts</li>
-          </ul>
-          <p style="font-size: 14px; color: #999; margin-top: 20px;">
-            If you wish to unsubscribe, you can do so by clicking the unsubscribe link in future emails.
-          </p>
-        </div>
-      </div>
-    `,
-  });
-};
-
-/**
  * Send inquiry received confirmation to customer
  */
 export const sendInquiryConfirmation = async (customerEmail, name, inquiryId) => {
