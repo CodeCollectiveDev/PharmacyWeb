@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { api } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 
+import ContactSeo from "./ContactSeo";
+
 const Contact = () => {
   const { toast } = useToast();
 
@@ -50,6 +52,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <ContactSeo />
       {/* Hero */}
       <section className="bg-gradient-to-br from-green-50 via-white to-green-50 py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">

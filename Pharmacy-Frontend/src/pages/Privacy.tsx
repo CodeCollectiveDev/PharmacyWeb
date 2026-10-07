@@ -1,8 +1,19 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useSEO } from "@/hooks/use-seo-tags";
+import { business } from "@/config/business";
 
 const Privacy = () => {
+  useSEO({
+    title: "Privacy Policy",
+    description: "Privacy Policy for Metmma Pharmacy",
+    canonical: `${business.domain}/privacy`,
+    ogTitle: "Privacy Policy - Metmma Pharmacy",
+    ogDescription: "Privacy Policy for Metmma Pharmacy",
+    ogUrl: `${business.domain}/privacy`,
+  });
+
   return (
     <div className="min-h-screen bg-gray-50 py-20">
       <div className="container mx-auto px-4 max-w-4xl">
