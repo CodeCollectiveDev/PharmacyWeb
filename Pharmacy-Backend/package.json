@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon Server.js",
+    "start": "node Server.js",
+    "start:dev": "nodemon Server.js",
     "init-db": "node initDB.js",
     "dev": "nodemon Server.js"
   },
