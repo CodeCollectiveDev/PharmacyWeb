@@ -1,11 +1,16 @@
 import { MapPin, Phone, Mail, Clock, Send, Navigation } from "lucide-react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { api } from "@/lib/api";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const { toast } = useToast();
+
   const contactInfo = [
     {
       icon: Phone,
@@ -146,7 +151,7 @@ const Contact = () => {
                     Name <span className="text-red-500" aria-label="required">*</span>
                   </Label>
                   <Input 
-                    id="name" 
+                    id="name" value={formData.name} onChange={handleInputChange} 
                     placeholder="John Wayne" 
                     required
                     aria-required="true"
@@ -158,7 +163,7 @@ const Contact = () => {
                     Email <span className="text-red-500" aria-label="required">*</span>
                   </Label>
                   <Input 
-                    id="email" 
+                    id="email" value={formData.email} onChange={handleInputChange} 
                     type="email" 
                     placeholder="email@example.com" 
                     required
@@ -169,7 +174,7 @@ const Contact = () => {
                 <div>
                   <Label htmlFor="phone" className="text-gray-700 font-semibold text-sm">Phone</Label>
                   <Input 
-                    id="phone" 
+                    id="phone" value={formData.phone} onChange={handleInputChange} 
                     type="tel" 
                     placeholder="(265) 987-654-321" 
                     className="mt-2 border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none rounded-lg transition-all" 
@@ -180,7 +185,7 @@ const Contact = () => {
                     Subject <span className="text-red-500" aria-label="required">*</span>
                   </Label>
                   <Input 
-                    id="subject" 
+                    id="subject" value={formData.subject} onChange={handleInputChange} 
                     placeholder="How can we help?" 
                     required
                     aria-required="true"
@@ -194,6 +199,8 @@ const Contact = () => {
                   <Textarea
                     id="message"
                     rows={5}
+                    value={formData.message}
+                    onChange={handleInputChange}
                     placeholder="Please provide details about your inquiry..."
                     required
                     aria-required="true"
@@ -203,10 +210,11 @@ const Contact = () => {
                 <Button 
                   type="submit" 
                   size="lg" 
+                  disabled={isSubmitting}
                   className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                   aria-label="Send message"
                 >
-                  <Send className="w-4 h-4 mr-2" /> Send Message
+                  <Send className="w-4 h-4 mr-2" /> {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </div>
