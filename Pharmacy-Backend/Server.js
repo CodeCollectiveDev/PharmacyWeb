@@ -42,13 +42,16 @@ const port = process.env.PORT || 3000; // Port number
 const app = express(); 
 
 // CORS middleware to allow frontend requests
-app.use(cors({
-  origin: [
-    'http://localhost:5173', 
+const allowedOrigins = process.env.CORS_ORIGINS
+  ? process.env.CORS_ORIGINS.split(',').map(o => o.trim()).filter(Boolean)
+  : [
+    'http://localhost:5173',
     'http://127.0.0.1:5173',
-    'http://localhost:8080', 
+    'http://localhost:8080',
     'http://127.0.0.1:8080'
-  ], // Vite dev server URLs
+  ];
+app.use(cors({
+  origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }));
