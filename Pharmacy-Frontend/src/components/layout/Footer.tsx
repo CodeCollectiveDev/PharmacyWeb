@@ -122,8 +122,8 @@ const Footer = () => {
               © 2025 Metmma Pharmacy. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm text-gray-500">
-              <a href="#" className="hover:text-green-300 transition-colors duration-300">Privacy Policy</a>
-              <a href="#" className="hover:text-green-300 transition-colors duration-300">Terms of Service</a>
+              <a href="/privacy" className="hover:text-green-300 transition-colors duration-300">Privacy Policy</a>
+              <a href="/privacy" className="hover:text-green-300 transition-colors duration-300">Terms of Service</a>
             </div>
           </div>
         </div>
