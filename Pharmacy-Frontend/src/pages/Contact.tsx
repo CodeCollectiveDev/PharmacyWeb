@@ -4,16 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useNewsletter } from "@/hooks/use-newsletter";
 
 const Contact = () => {
-  const { email, setEmail, subscribe, isLoading } = useNewsletter();
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    subscribe(email);
-  };
-
   const contactInfo = [
     {
       icon: Phone,
@@ -222,43 +214,3 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-green-500 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white rounded-full blur-3xl"></div>
-        </div>
-        <div className="container text-center max-w-2xl mx-auto px-4 relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Stay Informed</h2>
-          <p className="text-lg mb-8 opacity-90 leading-relaxed">
-            Subscribe to our newsletter for updates, tips, and advice from our
-            pharmacists.
-          </p>
-          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 bg-white/95 border-0 focus:ring-2 focus:ring-white/50 focus:outline-none transition-all duration-300"
-              required
-              disabled={isLoading}
-            />
-            <Button
-              type="submit"
-              className="bg-white text-green-600 hover:bg-gray-100 font-semibold px-8 transition-all duration-300 shadow-md hover:shadow-lg rounded-lg"
-              disabled={isLoading}
-            >
-              {isLoading ? "Subscribing..." : "Subscribe"}
-            </Button>
-          </form>
-          <p className="text-xs mt-6 opacity-80">
-            We respect your privacy. Unsubscribe anytime.
-          </p>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-export default Contact;

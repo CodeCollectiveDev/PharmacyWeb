@@ -166,10 +166,6 @@ export const contactFormRules: ValidationRules = {
 /**
  * Newsletter subscription validation rules
  */
-export const newsletterRules: ValidationRules = {
-  email: [validators.required("Email"), validators.email()],
-};
-
 /**
  * Prescription refill validation rules
  */
