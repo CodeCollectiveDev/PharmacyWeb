@@ -28,9 +28,7 @@ if (!/^postgres(ql)?:\/\//.test(connectionString)) {
 
 const pool = new Pool({
   connectionString,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  ssl: process.env.DB_SSL_VERIFY === 'true' ? { rejectUnauthorized: true } : { rejectUnauthorized: false },
 });
 
 // Connection event handlers
