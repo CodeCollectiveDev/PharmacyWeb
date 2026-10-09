@@ -1,6 +1,8 @@
 import { Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useSEO } from "@/hooks/use-seo-tags";
+import { business } from "@/config/business";
 
 const NotFound = () => {
   useSEO({
