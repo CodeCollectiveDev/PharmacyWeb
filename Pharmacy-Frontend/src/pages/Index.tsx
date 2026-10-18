@@ -113,7 +113,7 @@ const Index = () => {
               variant="outline"
               size="lg"
               onClick={handleContactClick}
-              className="border-white text-white hover:bg-white hover:text-black text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105"
+              className="border-white text-black hover:bg-white hover:text-black text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105"
             >
               <MessageCircle className="w-5 h-5 mr-2" />
               Get Help Now
@@ -291,7 +291,7 @@ const Index = () => {
                 }
                 variant="outline"
                 size="lg"
-                className="border-white text-white hover:bg-white/20 text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                className="border-white text-black hover:bg-white/20 text-lg px-8 py-4 h-auto font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Get Help Today
